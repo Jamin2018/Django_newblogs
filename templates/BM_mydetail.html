@@ -1,0 +1,143 @@
+{% extends 'BM_base.html' %}
+
+{% block link %}
+    <link rel="stylesheet" href="/static/css/mydetail.css">
+{% endblock %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li><a href="/bm/">博客管理</a></li>
+        <li class="active">个人信息</li>
+    </ol>
+    <div>
+        <form class="form-horizontal" action="/bm/mydetail/" method="post">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">用户名</label>
+
+                    <div class="col-xs-5">
+                        <p class="form-control-static">{{ request.session.user_info.username }}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">邮箱</label>
+
+                    <div class="col-xs-5">
+                        <p class="form-control-static">{{ obj.email }}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nickname" class="col-xs-2 control-label">昵称</label>
+
+                    <div class="col-xs-5">
+                        <input type="text" class="form-control" id="nickname" name="nickname" placeholder="请输入昵称" value="{{ request.session.user_info.nickname }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="blogUrl" class="col-xs-2 control-label">博客地址</label>
+
+                    <div class="col-xs-5">
+                        <input type="text" class="form-control" id="blogUrl" name="blogUrl"
+                               placeholder="如：jam,则个人博客为http://www.xxx.com/jam/" value="{{ request.session.user_info.blog__site }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="blogTheme" class="col-xs-2 control-label">博客主题</label>
+
+                    <div class="col-xs-5">
+                        <select id="blogTheme" class="form-control">
+                            <option>默认主题</option>
+                            <option>黑</option>
+                            <option>白</option>
+                            <option>红</option>
+                            <option>蓝</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="blogTitle" class="col-xs-2 control-label">博客标题内容</label>
+
+                    <div class="col-xs-8">
+                    <textarea id="blogTitle" name="blogTitle" style="min-height: 100px" class="form-control"
+                              placeholder="个人博客标题">{{ blog.title }}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-10">
+                        <button type="submit" class="btn btn-primary">保 存</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div style="position: absolute;" class="col-xs-offset-4 col-xs-5 ">
+            <div class="avatar-container">
+
+                <form method="POST" action="/bm/upload-avatar/" enctype="multipart/form-data"
+                      target="upload_iframe">
+                    <iframe  style="display:none " id="upload_iframe" name="upload_iframe"></iframe>
+                    <img id="previewImg" origin="/static/imgs/avatar/default.png"
+                         src="/static/imgs/avatar/default.png"
+                         style="border-radius: 50%;">
+
+                    <div class="text">点击图片更换(<a href="#">撤销</a>)</div>
+                    <input id="avatarImg" name="avatar_img" type="file" class="img-file"/>
+                    {#                    <input id='bbb' type="submit" onclick="iframe()">#}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+        $('#avatarImg').change(function () {
+            $(this).parent().submit();
+
+            $('#upload_iframe').load(function () {
+{#                            获取iframe返回值#}
+                var iframeContents = this.contentWindow.document.body.innerText;
+{#                            如果是字典，就要JSON#}
+{#                            iframeContents = JSON.parse(iframeContents);#}
+                if (iframeContents) {
+                    $('#previewImg').attr('src', '/' + iframeContents);
+                }
+            })
+        });
+
+
+
+
+        {#JQ提交#}
+        function JQ() {
+            var file_obj = document.getElementById('avatarImg').files[0];
+            var fd = new FormData();
+            fd.append('file',file_obj);
+
+            $.ajax({
+                url:'/bm/upload-avatar/',
+                type:'POST',
+                data:fd,
+                processData: false,  // tell jQuery not to process the data
+                contentType: false,  // tell jQuery not to set contentType
+                success:function (arg) {
+                    console.log(arg);
+                    console.log(111)
+                }
+            })
+        }
+
+        {#    原生的js提交#}
+        function xhr() {
+            var file_obj = document.getElementById('avatarImg').files[0];
+            var fd = new FormData();
+            fd.append('file',file_obj);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST','/bm/upload-avatar/');
+            xhr.onreadystatechange = function () {
+                console.log('111')
+            };
+            xhr.send(fd)
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+
+<div class="pg-header">
+    <div class="pg-header-h">
+        <div class="logo float-left">Jam的技术论坛</div>
+        <div class="pg-header-item float-left">全部</div>
+        <div class="pg-header-item float-left">Python</div>
+        <div class="pg-header-item float-left">Django</div>
+        {% if request.session.user_info.username %}
+
+            <a href="/{{  request.session.user_info.blog__site }}.html"><div class="pg-header-item float-right">{{ request.session.user_info.username }}</div></a>
+        {% else %}
+            <a href="/login/"><div class="pg-header-item float-right">登录</div></a>
+        {% endif %}
+    </div>
+</div>
+
+
+<div style="width: 1200px;position: relative;margin: 0 auto">
+
+    <div class="pg-right float-left">
+        {% block content %}
+            {% for post in all_articles %}
+                <div class="content bcolor-white">
+                    <a href="/{{ post.blog.site }}.html"><div>提问者：{{ post.blog.user.email }}</div></a>
+                    <div style="font-size: 20px"><a href="/zhihu/post/?nid={{ post.id }}">标题：{{ post.title}}</a></div>
+                    <div>内容：{{ post.summary }}</div>
+                    {#            <div><img src="/static/image/c.jpg"></div>#}
+                </div>
+            {% endfor %}
+            <div style="clear: both"></div>
+        {% endblock %}
+    </div>
+<div class="pg-left float-left">
+        <a class="" href="/bm/articles/">
+            <div class="pg-left-item">
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                <span>文章管理</span>
+            </div>
+        </a>
+
+        <a class="" href="/backend/article-0-0.html">
+            <div class="pg-left-item">
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                <span>个人信息</span>
+            </div>
+        </a>
+    </div>
+    <div style="clear: both"></div>
+</div>
+
+
+</body>
+</html>

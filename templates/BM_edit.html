@@ -1,0 +1,37 @@
+{% extends 'BM_base.html' %}
+
+{% block content %}
+            <ol class="breadcrumb">
+            <li><a href="/bm/">博客管理</a></li>
+            <li class="active">编辑文章</li>
+        </ol>
+    <div class="edit-content">
+    <form method="post" action="/bm/edit-article-{{ obj.nid }}/">
+        <div class="pg-edit-title ">标题</div>
+        <div class="pg-edit-title"><input type="text" class="form-control" name="title" placeholder="文章标题" value="{{ obj.title }}"></div>
+        <div class="pg-edit-title">简介</div>
+        <div class="pg-edit-title"><textarea  class="form-control" name="summary"  placeholder="文章简介">{{ obj.summary }}</textarea></div>
+        <div class="pg-edit-title">内容</div>
+        <div class="pg-edit-title"><textarea  class="" id="kindedit" name="content">{{ obj_detail.content }}</textarea></div>
+        <button type="submit" class="btn btn-primary">修改文章</button>
+    </form>
+    </div>
+{% endblock %}
+
+
+
+{% block script %}
+    <script src="/static/js/jquery-1.12.4.js"></script>
+    <script src="/static/plugins/kindeditor/kindeditor-all.js"></script>
+    <script>
+        $(function () {
+            KindEditor.create('#kindedit',{
+                width:'100%',
+                height:400,
+                resizeType: 0,
+                autoHeightMode : true,
+                filterMode : false,
+            });
+        })
+    </script>
+{% endblock %}

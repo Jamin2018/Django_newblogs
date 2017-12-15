@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章管理</title>
+    <link rel="stylesheet" href="/static/css/bmbase.css">
+    <link rel="stylesheet" href="/static/plugins/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.css"/>
+    {% block link %}
+    {% endblock %}
+</head>
+<body>
+<div class="pg-header">
+    <div class="logo float-left">
+        {{ request.session.user_info.nickname }}
+    </div>
+    <div class="">
+        <a href="/{{ request.session.user_info.blog__site }}.html">
+            <div class=" pg-header-item float-left">博客首页</div>
+        </a>
+        <a href="/out/"><div class="pg-header-item float-right">退出</div></a>
+
+        <div style="clear: both"></div>
+    </div>
+</div>
+
+<div class="pg-left">
+    <a class="" href="/bm/add/">
+        <div class="pg-left-item">
+            <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+            <span>发布文章</span>
+        </div>
+    </a>
+
+
+
+    <a class="" href="/bm/articles/">
+        <div class="pg-left-item">
+            <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+            <span>文章管理</span>
+        </div>
+    </a>
+
+    <a class="" href="/bm/mydetail/">
+        <div class="pg-left-item">
+            <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+            <span>个人信息</span>
+        </div>
+    </a>
+
+</div>
+
+<div class="pg-right" style="overflow: auto">
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+<script src="/static/js/jquery-1.12.4.js"></script>
+
+{% block script %}
+{% endblock %}
+</body>
+</html>

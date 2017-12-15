@@ -1,0 +1,60 @@
+body{
+    margin:0;
+}
+.float-left{
+    float: left;
+}
+.float-right{
+    float: right;
+}
+.pg-header{
+    height: 48px;
+    background-color: #5690D2;
+    line-height: 48px;
+}
+.logo{
+    color: white;
+    width: 200px;
+    text-align: center;
+    font-size: 30px;
+    background-color: #2a6496;
+}
+.pg-header-item{
+    padding: 0 30px;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+}
+.pg-left{
+    position: absolute;
+    width: 200px;
+    top: 52px;
+    left: 0;
+    bottom: 0;
+    border-top: 1px solid #777777;
+    border-right: 1px solid #777777;
+}
+.pg-left-item{
+    cursor: pointer;
+    height: 38px;
+    line-height: 38px;
+    padding-left: 10px;
+    border-bottom: 1px dashed #777777;
+}
+.pg-right{
+    position: absolute;
+    top: 52px;
+    left: 204px;
+    right: 0;
+    bottom: 0;
+    border-top: 1px solid #777777;
+    border-left: 1px solid #777777;
+}
+.edit-content{
+    margin: 20px;
+}
+.pg-edit-title{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
