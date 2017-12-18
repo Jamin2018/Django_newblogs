@@ -1,22 +1,108 @@
 {% extends 'blog_layout.html' %}
+{% load customfuntions %}
 
-
-<div class="pg-right float-left">
-        {% block content %}
-            {% for row in articles %}
-                <div class="content bcolor-white">
-                    <div class="" style="font-size: 20px;font-weight: bold"><a style="color: black" href="/zhihu/post/?nid={{ row.nid }}">{{ row.title}}</a></div>
-                    <div class="content-item">{{ row.summary }}</div>
-                    <div class="content-item-1">
-                        <div class="float-left">{{ row.create_time | date:"Y-m-d H:i:s"}}</div>
-                        <div class="float-left"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;&nbsp;{{ row.up_count }}</div>
-                        <div class="float-left"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;{{ row.read_count }}</div>
-                        <div class="float-left"><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;&nbsp;{{ row.comment_count }}</div>
-                    </div>
-                    {#            <div><img src="/static/image/c.jpg"></div>#}
+{% block content %}
+    <div style="width: 1200px;position: relative;margin: 0 auto">
+        <div class="pg-right float-left" style="width: 900px;margin-right: 30px">
+            <div class="content bcolor-white" style="border-bottom: 1px solid #e4e4e4;">
+                <div class="" style="font-size: 20px;font-weight: bold;color: black">{{ obj.title}}</div>
+                <div class="content-item-1" style="margin: 10px;margin-bottom: -2px">
+                    <div class="float-left" style="padding-bottom: 0px">{{ obj.create_time | date:"Y-m-d H:i:s"}}</div>
+                    <div class="float-left" style="padding-bottom: 0px"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;&nbsp;{{ obj.up_count }}</div>
+                    <div class="float-left" style="padding-bottom: 0px"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;{{ obj.read_count }}</div>
+                    <div class="float-left" style="padding-bottom: 0px"><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;&nbsp;{{ obj.comment_count }}</div>
+                    <div style="clear: both"></div>
                 </div>
-            {% endfor %}
-            <div style="height: 50px;text-align: center;background-color: white;font-size: 16px;color: #999999;line-height: 50px">已经到底了</div>
-            <div style="clear: both"></div>
-        {% endblock %}
+                <div class="" style="padding: 10px;border: 1px solid brown;border-radius: 4px">{{ obj.summary }}</div>
+                <div class="content-item">{{ obj_content.content | safe}}</div>
+                <div class="content-item-1">
+                    <div class="float-left">{{ obj.create_time | date:"Y-m-d H:i:s"}}</div>
+                    <div class="float-left"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;&nbsp;{{ obj.up_count }}</div>
+                    <div class="float-left"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;{{ obj.read_count }}</div>
+                    <div class="float-left"><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;&nbsp;{{ obj.comment_count }}</div>
+                </div>
+            </div>
+
+            <div class="comment" style="margin-top: 20px">
+                {% if not request.session.user_info %}
+                    <div style="text-align:center;line-height:200px;background-color: white">
+                        您需要登录后才可以回帖 <a href="/login/">登录</a> | <a href="/registration/">立即注册</a>
+                    </div>
+                {% else %}
+                    <div style="background-color: white;font-size: 16px;color: #999999;padding: 30px;border-top: 1px dashed #e4e4e4">
+                        <form method="POST" action="/comment/">
+                            <input style="display: none" type="text" name="article_url" value="/{{ blog.site }}/{{ obj.nid }}.html">
+                            <input style="display: none" type="text" name="article_nid" value="{{ obj.nid }}">
+                            <textarea name="content" class="form-control" placeholder="发表你的评论"></textarea>
+                            <input type="submit" class="btn btn-default float-right" style="border:1px solid brown;color: brown;margin-top: 20px" value="发表评论">
+                        </form>
+                        <div style="clear: both"></div>
+                    </div>
+                {% endif %}
+                {% if comment %}
+                    {% for i in comment %}
+                        <div style="background-color: white;font-size: 16px;color: #999999;padding: 20px 40px;border-top: 1px dashed #e4e4e4">
+                            <div>
+                                <div class="float-left" style="color: blue;margin-right: 20px">{{ i.user.username }} </div>
+                                <div class="float-left">{{ i.create_time | date:'Y-m-d H:i:s' }}</div>
+                                <div class="float-right" style="font-size: 15px">{{forloop.revcounter}}楼</div>
+                                <div style="clear: both"></div>
+                            </div>
+
+                            <div style="padding: 15px;color: black">{{ i.content }}</div>
+
+                        </div>
+                    {% endfor %}
+
+                {% else %}
+                    <div style="background-color: white;font-size: 16px;color: #999999;padding: 30px;border-top: 1px dashed #e4e4e4;text-align: center">
+                        暂无评论
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="float-left">
+            <div class="pg-left" style="border-bottom: 1px solid #e4e4e4">
+                <div style="margin-bottom: 10px">用户名：{{ userinfo.username }}</div>
+                <div style="margin-bottom: 20px">昵称：{{ userinfo.nickname }}</div>
+                <div>
+                    <div class="float-left" style="margin: 0 20px;text-align: center">
+                        <div>文章</div>
+                        <div style="font-weight: bold">{{ articles | length }}</div>
+                    </div>
+                    <div class="float-left" style="margin: 0 20px;text-align: center">
+                        <div>粉丝</div>
+                        <div>289</div>
+                    </div>
+                    <div style="clear: both"></div>
+                </div>
+                <div style="margin-top: 10px;padding: 10px;border: 1px dashed #bdb7bf;height: 100px;">
+                    <div style="text-align: center;font-size: 15px;font-weight: bold;color:#a10600 "><人生格言></div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;热爱科技，立志成为程序员的扫地少年。</div>
+                </div>
+            </div>
+            <div class="pg-left" style="margin-top: 20px">
+                文章分类
+            </div>
+            <div class="pg-left" style="margin-top: 20px">
+                <div style="padding-bottom: 10px;border-bottom: 1px dashed #bdb7bf;font-size: 16px"><div style="float: left;width: 4px;height: 20px;background-color: #a10600"></div>&nbsp;&nbsp;最新文章</div>
+                {% for row in new  %}
+                    <div style="margin-top: 10px">
+
+                        {{ row.title | slice:"14" | add:'...'}}
+                    </div>
+                    <div style="font-size: 12px;color: #999999">{{ row.create_time | date:"Y-m-d H:i:s"}}</div>
+                {% endfor %}
+            </div>
+            <div class="pg-left" style="margin-top: 20px">
+                <div style="padding-bottom: 10px;border-bottom: 1px dashed #bdb7bf;font-size: 16px"><div style="float: left;width: 4px;height: 20px;background-color: #a10600"></div>&nbsp;&nbsp;热门文章</div>
+                {% for row in hot  %}
+                    <div style="margin-top: 10px">
+                        {{ row.title }}
+                    </div>
+                    <div style="font-size: 12px;color: #999999"><i class="fa fa-thumbs-o-up" aria-hidden="true">{{ row.up_count }}</i></div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
+{% endblock %}

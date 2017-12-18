@@ -71,14 +71,27 @@ class UpDown(models.Model):
     '''
     文章顶或踩
     '''
+    article = models.ForeignKey(verbose_name='点赞的文章',to='Article',to_field='nid')
+    user = models.ForeignKey(verbose_name='赞或踩的用户',to='UserInfo',to_field='nid')
+    up = models.BooleanField(verbose_name='是否赞过')
 
-    pass
+    class Meta:
+        unique_together = [
+            ('article','user')
+        ]
+
 
 class Comment(models.Model):
     '''
     评论
     '''
-    pass
+    nid = models.BigAutoField(primary_key=True)
+    content = models.CharField(verbose_name='评论内容', max_length=255,null=True)
+    create_time = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
+
+    reply = models.ForeignKey(verbose_name='回复评论', to='self', related_name='back', null=True)
+    article = models.ForeignKey(verbose_name='评论文章', to='Article', to_field='nid')
+    user = models.ForeignKey(verbose_name='评论者', to='UserInfo', to_field='nid')
 
 class Tag(models.Model):
     pass

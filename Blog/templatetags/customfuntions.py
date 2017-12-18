@@ -7,5 +7,5 @@ from django.utils.safestring import mark_safe
 register = template.Library()
 
 @register.filter
-def custom_degression(n):
-    return n-1
+def customdegression(n):
+    return n-10
