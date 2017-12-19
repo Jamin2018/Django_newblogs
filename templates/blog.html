@@ -2,22 +2,47 @@
 
 
 {% block content %}
+
+
+
     <div style="width: 1200px;position: relative;margin: 0 auto">
         <div class="pg-right float-left" style="width: 900px;margin-right: 30px;background-color: white">
-                {% for row in articles %}
-                    <div class="content bcolor-white">
-                        <div class="" style="font-size: 20px;font-weight: bold"><a style="color: black" href="/{{ blog.site }}/{{ row.nid }}.html">{{ row.title}}</a></div>
-                        <div class="content-item">{{ row.summary }}</div>
-                        <div class="content-item-1">
-                            <div class="float-left">{{ row.create_time | date:"Y-m-d H:i:s"}}</div>
-                            <div class="float-left"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;&nbsp;{{ row.up_count }}</div>
-                            <div class="float-left"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;{{ row.read_count }}</div>
-                            <div class="float-left"><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;&nbsp;{{ row.comment_count }}</div>
-                        </div>
+            <div class="content-header">
+                <div>
+                    {% if arg_dic.article_type_id == 0 %}
+                        <div class="content-header-item active" style="float: left"><a href="/{{ blog.site }}-0-{{ arg_dic.category_id }}.html">全部</a></div>
+                    {% else %}
+                        <div class="content-header-item" style="float: left"><a href="/{{ blog.site }}-0-{{ arg_dic.category_id }}.html">全部</a></div>
+                    {% endif %}
+                    {% for row in article_type_list %}
+                        {% if row.0 == arg_dic.article_type_id %}
+                            <div class="content-header-item active" style="float: left"><a href="/{{ blog.site }}-{{ row.0 }}-{{ arg_dic.category_id }}.html">{{ row.1 }}</a></div>
+                        {% else %}
+                            <div class="content-header-item" style="float: left"><a href="/{{ blog.site }}-{{ row.0 }}-{{ arg_dic.category_id }}.html">{{ row.1 }}</a></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div style="clear: both"></div>
+            </div>
+
+
+            {% for row in articles %}
+                <div class="content bcolor-white">
+                    <div class="" style="font-size: 20px;font-weight: bold"><a style="color: black" href="/{{ blog.site }}/{{ row.nid }}.html">{{ row.title}}</a></div>
+                    <div class="content-item">{{ row.summary }}</div>
+                    <div class="content-item-1">
+                        <div class="float-left">{{ row.create_time | date:"Y-m-d H:i:s"}}</div>
+                        <div class="float-left"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;&nbsp;{{ row.up_count }}</div>
+                        <div class="float-left"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;{{ row.read_count }}</div>
+                        <div class="float-left"><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;&nbsp;{{ row.comment_count }}</div>
                     </div>
-                {% endfor %}
-                <div style="height: 50px;text-align: center;background-color: white;font-size: 16px;color: #999999;line-height: 50px">已经到底了</div>
-        <div style="clear: both"></div>
+                </div>
+            {% endfor %}
+            <div style="height: 80px;text-align: center;background-color: white;font-size: 16px;color: #999999;padding-top: 20px">
+                {% include 'fenye.html' %}
+            </div>
+            <div style="clear: both"></div>
         </div>
         <div class="float-left">
             <div class="pg-left" style="border-bottom: 1px solid #e4e4e4">
@@ -26,7 +51,7 @@
                 <div>
                     <div class="float-left" style="margin: 0 20px;text-align: center">
                         <div>文章</div>
-                        <div style="font-weight: bold">{{ articles | length }}</div>
+                        <div style="font-weight: bold">{{ articles_count }}</div>
                     </div>
                     <div class="float-left" style="margin: 0 20px;text-align: center">
                         <div>粉丝</div>
@@ -40,13 +65,29 @@
                 </div>
             </div>
             <div class="pg-left" style="margin-top: 20px">
-                文章分类
+            <div style="text-align: center;margin-bottom: 10px">文章分类</div>
+                <div>
+                    {% if arg_dic.category_id == 0 %}
+                        <div class="content-header-item-s active-i" style="float: left"><a href="/{{ blog.site }}-{{ arg_dic.article_type_id }}-0.html">全部</a></div>
+                    {% else %}
+                        <div class="content-header-item-s" style="float: left"><a href="/{{ blog.site }}-{{ arg_dic.article_type_id }}-0.html">全部</a></div>
+                    {% endif %}
+                    {% for row in category_list %}
+                        {% if row.nid == arg_dic.category_id %}
+                            <div class="content-header-item-s active-i" style="float: left"><a href="/{{ blog.site }}-{{ arg_dic.article_type_id }}-{{ row.nid }}.html">{{ row.title }}</a></div>
+                        {% else %}
+                            <div class="content-header-item-s" style="float: left"><a href="/{{ blog.site }}-{{ arg_dic.article_type_id }}-{{ row.nid }}.html">{{ row.title }}</a></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div style="clear: both"></div>
+
             </div>
             <div class="pg-left" style="margin-top: 20px">
                 <div style="padding-bottom: 10px;border-bottom: 1px dashed #bdb7bf;font-size: 16px"><div style="float: left;width: 4px;height: 20px;background-color: #a10600"></div>&nbsp;&nbsp;阅读排名</div>
                 {% for row in read  %}
                     <div style="margin-top: 10px">
-                        {{ row.title }}
+                        <a href="/{{ blog.site }}/{{ row.nid }}.html" style="color: black">{{ row.title }}</a>
                     </div>
                     <div style="font-size: 12px;color: #999999"><i class="fa fa-book" aria-hidden="true">{{ row.read_count }}</i></div>
                 {% endfor %}
@@ -55,7 +96,7 @@
                 <div style="padding-bottom: 10px;border-bottom: 1px dashed #bdb7bf;font-size: 16px"><div style="float: left;width: 4px;height: 20px;background-color: #a10600"></div>&nbsp;&nbsp;热门文章</div>
                 {% for row in hot  %}
                     <div style="margin-top: 10px">
-                        {{ row.title }}
+                        <a href="/{{ blog.site }}/{{ row.nid }}.html" style="color: black">{{ row.title }}</a>
                     </div>
                     <div style="font-size: 12px;color: #999999"><i class="fa fa-thumbs-o-up" aria-hidden="true">{{ row.up_count }}</i></div>
                 {% endfor %}

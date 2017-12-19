@@ -1,16 +1,37 @@
 from django.shortcuts import render,HttpResponse,redirect
 from Blog import models
 import json
+#分页
+from utils.pagination import Page
+from django.urls import reverse
 # Create your views here.
 
-def index(request):
+def index(request,**kwargs):
     if request.method =='GET':
-        all_articles = models.Article.objects.filter().order_by('-create_time')
+        article_type_list = models.Article.type_choices
+
+        c = {}
+        for k,v in kwargs.items():
+            kwargs[k] = int(v)
+            if v !='0':
+                c[k] = v
+        all_articles = models.Article.objects.filter(**c).order_by('-create_time')
         hot_articles = models.Article.objects.filter().order_by('-up_count')[:5]
         read_articles = models.Article.objects.filter().order_by('-read_count')[:5]
-        return render(request,'index.html',{'all_articles':all_articles,
+
+        # 分页
+        current_page = request.GET.get('p', 1)  # 获取对应get数据p: href="/user_list/?p=%s
+        current_page = int(current_page)
+        page_num = 10
+        page = Page(current_page, len(all_articles), page_num)
+        data = all_articles[page.start:page.end]  # 列表切片
+        page_str = page.page_str('/')
+        return render(request,'index.html',{'all_articles':data,
+                                            'page_str': page_str,
                                             'hot':hot_articles,
                                             'read':read_articles,
+                                            'article_type_list': article_type_list,
+                                            'arg_dict':kwargs,
                                             })
 
 def article_up(request):
@@ -135,7 +156,7 @@ def login(request):
             password = form.cleaned_data.get('password')
             print(email,password)
             user_info = models.UserInfo.objects.filter(email=email,password=password).values(
-                'nid','nickname','username','email','avatar','blog__nid','blog__site'
+                'nid','nickname','username','email','avatar','blog__nid','blog__site','blog__theme'
             ).first()
             if not user_info:
                 result['message'] = '邮箱不存在或密码错误'
@@ -222,24 +243,57 @@ def out(request):
 from Blog.auth.auth import auth
 
 # @auth
-def blog(request,site):
+def blog(request,site,**kwargs):
+
     blog = models.Blog.objects.filter(site=site).select_related('user').first()
     UserInfo = models.UserInfo.objects.filter(blog=blog).first()
-    articles = models.Article.objects.filter(blog=blog).order_by('-create_time')
+    articles_count = models.Article.objects.filter(blog=blog).order_by('-create_time').count()
     read_articles = models.Article.objects.filter(blog=blog).order_by('-read_count')[:5]
     hot_articles = models.Article.objects.filter(blog=blog).order_by('-up_count')[:5]
+
+    #组合搜索
+    article_type_list = models.Article.type_choices
+    category_list = models.Category.objects.filter(blog=blog)
+    blog = models.Blog.objects.filter(site=site).select_related('user').first()
+    c = {}
+    for k, v in kwargs.items():
+        kwargs[k] = int(v)
+        if v != '0':
+            c[k] = v
+    # 指定查找所有属于该博主的博文
+    c['blog'] = blog
+    data_count = models.Article.objects.filter(**c).count()
+    articles = models.Article.objects.filter(**c).order_by('-create_time').select_related('blog')
+
+
+    # 分页
+    current_page = request.GET.get('p', 1)  # 获取对应get数据p: href="/user_list/?p=%s
+    current_page = int(current_page)
+    page_num = 10
+    page = Page(current_page, len(articles), page_num)
+    data = articles[page.start:page.end]  # 列表切片
+    page_str = page.page_str('/%s.html' % site)
+
+
     return render(request,'blog.html',{'userinfo':UserInfo,
-                                         'blog':blog,
-                                         'articles':articles,
-                                         'read':read_articles,
-                                         'hot':hot_articles})
+                                       'blog':blog,
+                                       'articles':data,
+                                       'articles_count':articles_count,
+                                       'page_str': page_str,
+                                       'read':read_articles,
+                                       'hot':hot_articles,
+                                       'article_type_list': article_type_list,
+                                       'category_list': category_list,
+                                       'arg_dic': kwargs,
+                                       'data_count': data_count,
+                                       })
 
 
 
 def myblog(request,site,nid):
     blog = models.Blog.objects.filter(site=site).select_related('user').first()
     UserInfo = models.UserInfo.objects.filter(blog=blog).first()
-    articles = models.Article.objects.filter(blog=blog).order_by('-create_time')
+    articles_count = models.Article.objects.filter(blog=blog).order_by('-create_time').count()
     new_articles = models.Article.objects.filter(blog=blog).order_by('-create_time')[:5]
     obj = models.Article.objects.filter(blog=blog,nid=nid).first()
     obj_content = models.ArticleDetail.objects.filter(article=obj).first()
@@ -251,14 +305,23 @@ def myblog(request,site,nid):
     n = obj.read_count
     n += 1
     models.Article.objects.filter(blog=blog,nid=nid).update(read_count=n)
+
+    # 分页
+    current_page = request.GET.get('p', 1)  # 获取对应get数据p: href="/user_list/?p=%s
+    current_page = int(current_page)
+    page = Page(current_page, len(comment), 7)
+    data = comment[page.start:page.end]  # 列表切片
+    page_str = page.page_str('/%s/%s.html' % (site,nid))
+
     return render(request, 'myblog.html', {'userinfo': UserInfo,
                                            'blog': blog,
-                                           'articles': articles,
+                                           'articles_count': articles_count,
                                            'new': new_articles,
                                            'hot': hot_articles,
                                            'obj':obj,
                                            'obj_content':obj_content,
-                                           'comment':comment,
+                                           'comment':data,
+                                           'page_str': page_str,
                                            })
 
 def comment(request):

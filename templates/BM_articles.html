@@ -1,18 +1,68 @@
 {% extends 'BM_base.html' %}
+{% load customfuntions %}
+
 
 {% block link %}
-<link rel="stylesheet" href="/static/css/bmindex.css">
+    <link rel="stylesheet" href="/static/css/bmindex.css">
 {% endblock %}
 
 {% block content %}
-            <ol class="breadcrumb">
-            <li><a href="/bm/">博客管理</a></li>
-            <li class="active">文章管理</li>
-        </ol>
-    <div style="margin: 20px">
+    <ol class="breadcrumb">
+        <li><a href="/bm/">博客管理</a></li>
+        <li class="active">文章管理</li>
+    </ol>
+    <div style="margin: 15px">
+        <div style="border: 1px dashed #dddddd;padding: 8px;border-left: 3px solid #337ab7;">
+            <i class="fa fa-search" aria-hidden="true"></i> 搜索条件
+        </div>
+        <div style="padding: 10px">
+            <div class="conditions row clearfix" style="margin: 0;padding: 8px 0;">
+                <div>
+                    {% if arg_dic.article_type_id == 0 %}
+                        <a class="active" href="/bm/articles-0-{{ arg_dic.category_id }}.html">全部</a>
+                    {% else %}
+                        <a href="/bm/articles-0-{{ arg_dic.category_id }}.html">全部</a>
+                    {% endif %}
+                    {% for row in article_type_list %}
+                        {% if row.0 == arg_dic.article_type_id %}
+                            <a class="active" href="/bm/articles-{{ row.0 }}-{{ arg_dic.category_id }}.html">{{ row.1 }}</a>
+                        {% else %}
+                            <a href="/bm/articles-{{ row.0 }}-{{ arg_dic.category_id }}.html">{{ row.1 }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div>
+                    {% if arg_dic.category_id == 0 %}
+                        <a class="active" href="/bm/articles-{{ arg_dic.article_type_id }}-0.html">全部</a>
+                    {% else %}
+                        <a href="/bm/articles-{{ arg_dic.article_type_id }}-0.html">全部</a>
+                    {% endif %}
+                    {% for row in category_list %}
+                        {% if row.nid == arg_dic.category_id %}
+                            <a class="active" href="/bm/articles-{{ arg_dic.article_type_id }}-{{ row.nid }}.html">{{ row.title }}</a>
+                        {% else %}
+                            <a href="/bm/articles-{{ arg_dic.article_type_id }}-{{ row.nid }}.html">{{ row.title }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"
+             style="height: 36px;line-height: 35px;padding: 0 15px;border-top: 1px solid #dddddd;background-color: #f1f0f0">
+            <i class="fa fa-table" aria-hidden="true"></i>
+            搜索文章({{ data_count }}篇)
+            <a target="_blank" href="/bm/add/" class="float-right"
+               style="display: inline-block;padding:0 10px;background-color: #428bca;color: #ffffff;">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                创建新文章
+            </a>
+        </div>
+
+
         <table class="table table-bordered">
             <thead>
             <tr>
+                <th>序号</th>
                 <th>文章标题</th>
                 <th>发布时间</th>
                 <th>操作</th>
@@ -21,6 +71,7 @@
             <tbody>
             {% for row in arts %}
                 <tr nid="{{ row.nid }}">
+                    <td style="width: 50px;text-align: center">{{forloop.counter}}</td>
                     <td><a href="/{{ row.blog.site }}/{{ row.nid }}.html">{{ row.title }}</a></td>
                     <td>{{ row.create_time | date:"Y-m-d H:i:s" }}</td>
                     <td>
@@ -38,6 +89,7 @@
             {% endfor %}
             </tbody>
         </table>
+        {% include 'fenye.html' %}
     </div>
 {% endblock %}
 
@@ -49,11 +101,12 @@
             var v = $(this).parent().parent().attr('nid');
             $.ajax({
                 url:'/bm/delete/',
-                type:'POST',
+                type:'GET',
                 data:{'nid':v},
                 dataType: 'JSON',
                 success: function (arg) {
-                    location.href='/bm/articles/'
+                    {#                    返回当前url#}
+                    location.href=window.location.pathname;
                 }
             });
         })

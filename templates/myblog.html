@@ -1,26 +1,42 @@
 {% extends 'blog_layout.html' %}
 {% load customfuntions %}
 
+{% block haeder %}
+    <div class="pg-header pg-header-backcolor">
+        <div class="pg-header-h">
+            <img src="/static/imgs/logo/3.jpg" style="width: 45px;height: 45px;float: left;margin-left: 20px">
+            <div class="logo float-left pg-header-item-i">{{ blog.title }}</div>
+            {% if request.session.user_info.username %}
+                <a href="/out/"><div class="pg-header-item float-right pg-header-item-i">退出</div></a>
+                <a href="/bm/"><div class="pg-header-item float-right pg-header-item-i">我的博客管理</div></a>
+                <a class="pg-header-item " href="/{{ request.session.user_info.blog__site }}-0-0.html"><div class="pg-header-item float-right pg-header-item-i">我的博客</div></a>
+            {% else %}
+                <a href="/login/"><div class="pg-header-item float-right pg-header-item-i">登录</div></a>
+            {% endif %}
+            <a class="pg-header-item" href="/"><div class="pg-header-item float-right pg-header-item-i">首页</div></a>
+        </div>
+    </div>
+    <div style="border: 1px solid #bdb7bf"></div>
+    <div style="height: 70px"></div>
+{% endblock %}
+
 {% block content %}
     <div style="width: 1200px;position: relative;margin: 0 auto">
         <div class="pg-right float-left" style="width: 900px;margin-right: 30px">
-            <div class="content bcolor-white" style="border-bottom: 1px solid #e4e4e4;">
+            <div class="content bcolor-white" style="border-bottom: 1px solid #e4e4e4;padding-bottom: 30px">
                 <div class="" style="font-size: 20px;font-weight: bold;color: black">{{ obj.title}}</div>
                 <div class="content-item-1" style="margin: 10px;margin-bottom: -2px">
                     <div class="float-left" style="padding-bottom: 0px">{{ obj.create_time | date:"Y-m-d H:i:s"}}</div>
-                    <div class="float-left" style="padding-bottom: 0px"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;&nbsp;{{ obj.up_count }}</div>
+                    <div id="article_id" style="display: none">{{ obj.nid }}</div>
+                    <div id='AddFavor'  class="float-left" style="position: relative;padding-bottom: 0px"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;&nbsp;<span>{{ obj.up_count }}</span></div>
+                    <div id='deleteFavor' class="float-left" style="position: relative;padding-bottom: 0px"><i class="fa fa-thumbs-down" aria-hidden="true"></i>&nbsp;&nbsp;<span>{{ obj.down_count }}</span></div>
                     <div class="float-left" style="padding-bottom: 0px"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;{{ obj.read_count }}</div>
                     <div class="float-left" style="padding-bottom: 0px"><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;&nbsp;{{ obj.comment_count }}</div>
                     <div style="clear: both"></div>
                 </div>
                 <div class="" style="padding: 10px;border: 1px solid brown;border-radius: 4px">{{ obj.summary }}</div>
                 <div class="content-item">{{ obj_content.content | safe}}</div>
-                <div class="content-item-1">
-                    <div class="float-left">{{ obj.create_time | date:"Y-m-d H:i:s"}}</div>
-                    <div class="float-left"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;&nbsp;{{ obj.up_count }}</div>
-                    <div class="float-left"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;{{ obj.read_count }}</div>
-                    <div class="float-left"><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;&nbsp;{{ obj.comment_count }}</div>
-                </div>
+
             </div>
 
             <div class="comment" style="margin-top: 20px">
@@ -29,7 +45,7 @@
                         您需要登录后才可以回帖 <a href="/login/">登录</a> | <a href="/registration/">立即注册</a>
                     </div>
                 {% else %}
-                    <div style="background-color: white;font-size: 16px;color: #999999;padding: 30px;border-top: 1px dashed #e4e4e4">
+                    <div style="background-color: white;font-size: 16px;color: #999999;padding: 30px;border-bottom: 1px dashed #e4e4e4;">
                         <form method="POST" action="/comment/">
                             <input style="display: none" type="text" name="article_url" value="/{{ blog.site }}/{{ obj.nid }}.html">
                             <input style="display: none" type="text" name="article_nid" value="{{ obj.nid }}">
@@ -40,20 +56,25 @@
                     </div>
                 {% endif %}
                 {% if comment %}
-                    {% for i in comment %}
-                        <div style="background-color: white;font-size: 16px;color: #999999;padding: 20px 40px;border-top: 1px dashed #e4e4e4">
-                            <div>
-                                <div class="float-left" style="color: blue;margin-right: 20px">{{ i.user.username }} </div>
-                                <div class="float-left">{{ i.create_time | date:'Y-m-d H:i:s' }}</div>
-                                <div class="float-right" style="font-size: 15px">{{forloop.revcounter}}楼</div>
-                                <div style="clear: both"></div>
+                    <div>
+                        {% for i in comment %}
+                            <div style="background-color: white;font-size: 16px;color: #999999;padding: 20px 40px;border-bottom: 1px dashed #e4e4e4">
+                                <div>
+                                    <div class="float-left" style="color: blue;margin-right: 20px">{{ i.user.username }} </div>
+                                    <div class="float-left">{{ i.create_time | date:'Y-m-d H:i:s' }}</div>
+                                    <div class="float-right" style="font-size: 15px">{{forloop.revcounter}}楼</div>
+                                    <div style="clear: both"></div>
+                                </div>
+
+                                <div style="padding: 15px;color: black">{{ i.content }}</div>
+
                             </div>
-
-                            <div style="padding: 15px;color: black">{{ i.content }}</div>
-
-                        </div>
-                    {% endfor %}
-
+                        {% endfor %}
+        <div style="height: 80px;text-align: center;background-color: white;font-size: 16px;color: #999999;padding-top: 20px">
+            {% include 'fenye.html' %}
+        </div>
+        <div style="clear: both"></div>
+                    </div>
                 {% else %}
                     <div style="background-color: white;font-size: 16px;color: #999999;padding: 30px;border-top: 1px dashed #e4e4e4;text-align: center">
                         暂无评论
@@ -68,7 +89,7 @@
                 <div>
                     <div class="float-left" style="margin: 0 20px;text-align: center">
                         <div>文章</div>
-                        <div style="font-weight: bold">{{ articles | length }}</div>
+                        <div style="font-weight: bold">{{ articles_count }}</div>
                     </div>
                     <div class="float-left" style="margin: 0 20px;text-align: center">
                         <div>粉丝</div>
@@ -81,15 +102,12 @@
                     <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;热爱科技，立志成为程序员的扫地少年。</div>
                 </div>
             </div>
-            <div class="pg-left" style="margin-top: 20px">
-                文章分类
-            </div>
+
             <div class="pg-left" style="margin-top: 20px">
                 <div style="padding-bottom: 10px;border-bottom: 1px dashed #bdb7bf;font-size: 16px"><div style="float: left;width: 4px;height: 20px;background-color: #a10600"></div>&nbsp;&nbsp;最新文章</div>
                 {% for row in new  %}
                     <div style="margin-top: 10px">
-
-                        {{ row.title | slice:"14" | add:'...'}}
+                        <a href="/{{ blog.site }}/{{ row.nid }}.html" style="color: black">{{ row.title }}</a>
                     </div>
                     <div style="font-size: 12px;color: #999999">{{ row.create_time | date:"Y-m-d H:i:s"}}</div>
                 {% endfor %}
@@ -98,11 +116,124 @@
                 <div style="padding-bottom: 10px;border-bottom: 1px dashed #bdb7bf;font-size: 16px"><div style="float: left;width: 4px;height: 20px;background-color: #a10600"></div>&nbsp;&nbsp;热门文章</div>
                 {% for row in hot  %}
                     <div style="margin-top: 10px">
-                        {{ row.title }}
+                        <a href="/{{ blog.site }}/{{ row.nid }}.html" style="color: black">{{ row.title }}</a>
                     </div>
                     <div style="font-size: 12px;color: #999999"><i class="fa fa-thumbs-o-up" aria-hidden="true">{{ row.up_count }}</i></div>
                 {% endfor %}
             </div>
         </div>
     </div>
+
+
+
+    <script src="/static/js/jquery-1.12.4.js"></script>
+    <script>
+        $('#AddFavor i').click(function () {
+            AddFavor(this);
+        });
+        $('#deleteFavor i').click(function () {
+            deleteFavor(this);
+        });
+
+        function AddFavor(self) {
+            var v = $(self).parent().parent().find('#article_id').text();
+            $.ajax({
+                url:'/articles-up/',
+                type:'POST',
+                data:{'nid':v},
+                dataType: 'JSON',
+                success: function (data) {
+                    if(data.state == 1){
+                        v = $(self).parent().parent().find('#AddFavor span').text(data.num_up);
+                        v = $(self).parent().parent().find('#deleteFavor span').text(data.num_down);
+                        //Dom 对象
+                        var fontSize = 15;
+                        var top = 0;
+                        var right = 20;
+                        var opacity = 1;
+
+                        var tag = document.createElement('span');
+                        $(tag).text('+1');
+                        $(tag).css('color', 'red');
+                        $(tag).css('position', 'absolute');
+                        $(tag).css('fontSize', fontSize + 'px');
+                        $(tag).css('right', right + 'px');
+                        $(tag).css('top', top + 'px');
+                        $(tag).css('opacity', opacity);
+                        $(self).append(tag);
+
+                        var obj = setInterval(function () {
+                            fontSize = fontSize + 0.5;
+                            top = top - 0.5;
+                            right = right - 0.5;
+                            opacity = opacity - 0.01;
+
+                            $(tag).css('fontSize', fontSize + 'px');
+                            $(tag).css('right', right + 'px');
+                            $(tag).css('top', top + 'px');
+                            $(tag).css('opacity', opacity);
+
+                            if (opacity < 0) {
+                                clearInterval(obj);
+                                $(tag).remove();
+                            }
+                        }, 6);
+                    }
+
+                }
+            });
+
+        }
+
+        function deleteFavor(self) {
+            var v = $(self).parent().parent().find('#article_id').text();
+            $.ajax({
+                url:'/articles-down/',
+                type:'POST',
+                data:{'nid':v},
+                dataType: 'JSON',
+                success: function (data) {
+                    if(data.state == 1){
+                        v = $(self).parent().parent().find('#AddFavor span').text(data.num_up);
+                        v = $(self).parent().parent().find('#deleteFavor span').text(data.num_down);
+                        //Dom 对象
+                        var fontSize = 15;
+                        var top = 0;
+                        var right = 20;
+                        var opacity = 1;
+
+                        var tag = document.createElement('span');
+                        $(tag).text('-1');
+                        $(tag).css('color', 'green');
+                        $(tag).css('position', 'absolute');
+                        $(tag).css('fontSize', fontSize + 'px');
+                        $(tag).css('right', right + 'px');
+                        $(tag).css('top', top + 'px');
+                        $(tag).css('opacity', opacity);
+                        $(self).append(tag);
+
+                        var obj = setInterval(function () {
+                            fontSize = fontSize + 0.5;
+                            top = top - 0.5;
+                            right = right - 0.5;
+                            opacity = opacity - 0.01;
+
+                            $(tag).css('fontSize', fontSize + 'px');
+                            $(tag).css('right', right + 'px');
+                            $(tag).css('top', top + 'px');
+                            $(tag).css('opacity', opacity);
+
+                            if (opacity < 0) {
+                                clearInterval(obj);
+                                $(tag).remove();
+                            }
+                        }, 6);
+                    }
+
+                }
+            });
+
+        }
+
+    </script>
 {% endblock %}

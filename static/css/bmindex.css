@@ -1,0 +1,13 @@
+.conditions a{
+    display: inline-block;
+    padding: 3px 10px;
+    border: 1px solid #999999;
+    margin: 5px;
+}
+.conditions a:hover{
+    cursor: pointer;
+}
+.conditions a.active{
+    background-color: #5690d2;
+    color: black;
+}

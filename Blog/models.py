@@ -30,6 +30,7 @@ class Blog(models.Model):
     title = models.CharField(verbose_name='个人博客标题',max_length=64)
     site = models.CharField(verbose_name='个人博客前缀', max_length=32, unique=True)
     user = models.OneToOneField(to='UserInfo',to_field='nid')
+    theme = models.CharField(verbose_name='博客主题', max_length=32,default=1)
 
 
 class UserFans(models.Model):
@@ -38,11 +39,8 @@ class UserFans(models.Model):
     '''
     pass
 
-class Category(models.Model):
-    '''
-    博主个人文章分类
-    '''
-    pass
+
+
 
 class ArticleDetail(models.Model):
     '''
@@ -64,7 +62,30 @@ class Article(models.Model):
     down_count = models.IntegerField(default=0)
     create_time = models.DateTimeField(verbose_name='创建时间',auto_now_add=True)
     blog = models.ForeignKey(verbose_name='所属博客',to='Blog',to_field='nid')
-    # category = models.ForeignKey(verbose_name='文章类型',to='Category',to_field='nid',null=True)
+
+
+
+    category = models.ForeignKey(verbose_name='文章类型', to='Category', to_field='nid', null=True,on_delete=models.SET_NULL)
+    # article_type = models.ForeignKey(verbose_name='文章分类',to='ArticleType',to_field='nid', null=True)
+
+    type_choices = [
+        (1, "Python"),
+        (2, "Django"),
+        (3, "Flask"),
+        (4, "前端"),
+        (5, "其他"),
+    ]
+
+    article_type_id = models.IntegerField(choices=type_choices,default=5)
+
+    # tags = models.ManyToManyField(
+    #     to="Tag",
+    #     through='Article2Tag',
+    #     through_fields=('article', 'tag'),
+    # )
+# class ArticleType(models.Model):
+#     nid = models.BigAutoField(primary_key=True)
+#     caption = models.CharField(max_length=16)
 
 
 class UpDown(models.Model):
@@ -93,5 +114,19 @@ class Comment(models.Model):
     article = models.ForeignKey(verbose_name='评论文章', to='Article', to_field='nid')
     user = models.ForeignKey(verbose_name='评论者', to='UserInfo', to_field='nid')
 
+
+
 class Tag(models.Model):
-    pass
+    nid = models.AutoField(primary_key=True)
+    title = models.CharField(verbose_name='标签名称', max_length=32)
+    blog = models.ForeignKey(verbose_name='所属博客', to='Blog', to_field='nid')
+
+
+class Category(models.Model):
+    """
+    博主个人文章分类表
+    """
+    nid = models.AutoField(primary_key=True)
+    title = models.CharField(verbose_name='分类标题', max_length=32,unique=True)
+
+    blog = models.ForeignKey(verbose_name='所属博客', to='Blog', to_field='nid')

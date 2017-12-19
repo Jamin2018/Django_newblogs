@@ -19,13 +19,13 @@ from Blog import views
 
 urlpatterns = [
     url(r'^$', views.index),
+    url(r'^index-(?P<article_type_id>\d+).html$', views.index),
     url(r'^login/', views.login),
     url(r'^registration/', views.registration),
     url(r'^comment/', views.comment),
     url(r'^articles-up/', views.article_up),
     url(r'^articles-down/', views.article_down),
-
     url(r'^out/', views.out),
-    url(r'^(?P<site>\w+).html$', views.blog),
+    url(r'^(?P<site>\w+)-(?P<article_type_id>\d+)-(?P<category_id>\d+).html$', views.blog),
     url(r'^(?P<site>\w+)/(?P<nid>\d+).html$', views.myblog),
 ]

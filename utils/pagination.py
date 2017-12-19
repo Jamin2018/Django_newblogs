@@ -21,8 +21,8 @@ class Page(object):
     @property    #下面调用的时候不想加括号，
     def all_count(self):
         v,y = divmod(self.data_count,self.per_page_count)
-        if v:
-            y += 1
+        if y:
+            v += 1
         return v
 
     def page_str(self,base_url):
@@ -44,36 +44,36 @@ class Page(object):
                     start_index = self.all_count - (page_num - 1)
 
         if self.current_page == 1:
-            prev = '<a class= "page" href="javascript:void(0);">上一页</a>'
+            prev = '<li><a class= "page" href="javascript:void(0);">上一页</a></li>'
             page_list.append(prev)
         else:
-            prev = '<a class= "page" href="%s?p=%s">上一页</a>' % (base_url,self.current_page - 1)
+            prev = '<li><a class= "page" href="%s?p=%s">上一页</a></li>' % (base_url,self.current_page - 1)
             page_list.append(prev)
 
         for i in range(int(start_index), int(end_index)):
             if i == self.current_page:  # .pagination .page.active   page和active没有空格
-                temp = '<a class= "page active" href="%s?p=%s">%s</a>' % (base_url,i, i)
+                temp = '<li><a class= "page active" href="%s?p=%s">%s</a></li>' % (base_url,i, i)
             else:  # 根据选中的页面，显示不同样式
-                temp = '<a class= "page" href="%s?p=%s">%s</a>' % (base_url,i, i)
+                temp = '<li><a class= "page" href="%s?p=%s">%s</a></li>' % (base_url,i, i)
             page_list.append(temp)
 
         if self.current_page == self.all_count:
-            prev = '<a class= "page" href="javascript:void(0);">下一页</a>'
+            prev = '<li><a class= "page" href="javascript:void(0);">下一页</a></li>'
             page_list.append(prev)
         else:
-            prev = '<a class= "page" href="%s?p=%s">下一页</a>' % (base_url,self.current_page + 1)
+            prev = '<li><a class= "page" href="%s?p=%s">下一页</a></li>' % (base_url,self.current_page + 1)
             page_list.append(prev)
-
-        jump = '''
-           <input type = 'text'><a onclick="jumpTo(this,'%s?p=');">GO</a>
-           <script>
-               function jumpTo(ths,base){
-                   var val = ths.previousSibling.value;
-                   location.href = base + val;
-               }
-           </script>
-           '''%(base_url)
-        page_list.append(jump)
+        #
+        # jump = '''
+        #    <input type = 'text'><a onclick="jumpTo(this,'%s?p=');">GO</a>
+        #    <script>
+        #        function jumpTo(ths,base){
+        #            var val = ths.previousSibling.value;
+        #            location.href = base + val;
+        #        }
+        #    </script>
+        #    '''%(base_url)
+        # page_list.append(jump)
         page_str = ''.join(page_list)  # 4.将列表转成总字符串'<a href="/user_list/?p=%s">%s</a>
         from django.utils.safestring import mark_safe
         page_str = mark_safe(page_str)  # 将插入html中的字符串变成安全代码，可以被解释

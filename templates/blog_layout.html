@@ -11,8 +11,10 @@
     {% block link %}
     {% endblock %}
 </head>
-<body style="background-image: url(/static/imgs/back-image/5.jpg) ">
 
+<body style="background-image: url(/static/imgs/back-image/{{ blog.theme }}.jpg) ">
+
+{% block haeder %}
 <div class="pg-header pg-header-backcolor">
     <div class="pg-header-h">
         <img src="/static/imgs/logo/3.jpg" style="width: 45px;height: 45px;float: left;margin-left: 20px">
@@ -29,12 +31,12 @@
 </div>
 <div style="border: 1px solid #bdb7bf"></div>
 <div style="height: 70px"></div>
+{% endblock %}
 
 
 {% block content %}
 
 {% endblock %}
-
 
 </body>
 </html>

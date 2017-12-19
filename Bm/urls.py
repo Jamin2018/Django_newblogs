@@ -19,9 +19,13 @@ from Bm import views
 
 urlpatterns = [
     url(r'^$',views.index),
-    url(r'^add/',views.add),
+    url(r'^add/$',views.add),
+    url(r'^add-category/$',views.add_category),
+    url(r'^delete-category/$',views.delete_category),
     url(r'^delete/',views.delete),
-    url(r'^articles/',views.articles),
+    url(r'^tag/',views.tag),
+    url(r'^category/',views.category),
+    url(r'^articles-(?P<article_type_id>\d+)-(?P<category_id>\d+).html',views.articles,name='articles'),
     url(r'^edit-article-(?P<nid>\d+)/',views.edit_article),
     url(r'^mydetail/',views.mydetail),
     url(r'^upload-avatar/',views.upload_avatar),

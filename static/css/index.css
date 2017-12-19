@@ -67,3 +67,38 @@ body{
     padding-bottom: 10px;
     padding-right: 40px;
 }
+.content-header{
+
+}
+.content-header .content-header-item{
+    border-bottom: 2px solid #5690D2;
+    border-right: 1px dashed #5690D2;
+}
+.content-header div a{
+    display: inline-block;
+    width: 149px;
+    text-align: center;
+    height: 45px;
+    line-height: 45px;
+}
+.content-header div a:hover{
+    cursor: pointer;
+}
+.content-header .active{
+    background-color: #dcdcdc;
+    font-size: 20px;
+}
+.content-header .active a{
+    color: black;
+}
+.content-header-item-s{
+    padding: 3px 8px;
+    margin: 3px 5px;
+    border: 1px solid brown;
+}
+.active-i{
+    background-color: brown;
+}
+.active-i a{
+    color: white;
+}

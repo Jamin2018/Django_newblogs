@@ -58,3 +58,14 @@ body{
     font-weight: bold;
     margin: 10px 0;
 }
+.float-left-i{
+    float: left;
+    display: inline-block;
+    font-size: 30px;
+}
+.form-group-i{
+    float: right;
+    padding: 10px;
+    padding-right: 40px;
+    margin-bottom: 50px;
+}

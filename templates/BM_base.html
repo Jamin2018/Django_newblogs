@@ -15,7 +15,7 @@
         {{ request.session.user_info.nickname }}
     </div>
     <div class="">
-        <a href="/{{ request.session.user_info.blog__site }}.html">
+        <a href="/{{ request.session.user_info.blog__site }}-0-0.html">
             <div class=" pg-header-item float-left">博客首页</div>
         </a>
         <a href="/out/"><div class="pg-header-item float-right">退出</div></a>
@@ -31,13 +31,22 @@
             <span>发布文章</span>
         </div>
     </a>
-
-
-
-    <a class="" href="/bm/articles/">
+    <a class="" href="/bm/articles-0-0.html">
         <div class="pg-left-item">
             <i class="fa fa-hand-o-right" aria-hidden="true"></i>
             <span>文章管理</span>
+        </div>
+    </a>
+    <a class="" href="/bm/category/">
+        <div class="pg-left-item">
+            <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+            <span>分类管理</span>
+        </div>
+    </a>
+    <a class="" href="/bm/tag/">
+        <div class="pg-left-item">
+            <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+            <span>标签管理</span>
         </div>
     </a>
 
