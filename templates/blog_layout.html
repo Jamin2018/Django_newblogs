@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>博客园</title>
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/plugins/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.css"/>
@@ -12,11 +12,15 @@
     {% endblock %}
 </head>
 
-{% if request.session.user_info.blog__theme %}
-<body style="background-image: url(/static/imgs/back-image/{{ request.session.user_info.blog__theme }}.jpg) ">
+
+{% block body_back_image %}
+{% if blog.theme %}
+<body style="background-image: url(/static/imgs/back-image/{{ blog.theme }}.jpg) ">
 {% else %}
 <body style="background-image: url(/static/imgs/back-image/1.jpg) ">
 {% endif %}
+{% endblock %}
+
 
 {% block haeder %}
 <div class="pg-header pg-header-backcolor">
@@ -34,7 +38,7 @@
     </div>
 </div>
 <div style="border: 1px solid #bdb7bf"></div>
-<div style="height: 70px"></div>
+<div style="height: 50px"></div>
 {% endblock %}
 
 

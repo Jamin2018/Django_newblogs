@@ -26,7 +26,7 @@ class Page(object):
             v += 1
         return v
 
-    def page_str(self,base_url):
+    def page_str(self,base_url,*args):
         page_list = []
         # 控制页码显示
 
@@ -43,27 +43,48 @@ class Page(object):
                 if self.current_page + (self.page_num - 1) / 2 > self.all_count:
                     end_index = self.all_count + 1
                     start_index = self.all_count - (self.page_num - 1)
+        if args:
+            if self.current_page == 1:
+                prev = '<li><a class= "page" href="javascript:void(0);">上一页</a></li>'
+                page_list.append(prev)
+            else:
+                prev = '<li><a class= "page" href="%s?p=%s#%s">上一页</a></li>' % (base_url,self.current_page - 1,args[0])
+                page_list.append(prev)
 
-        if self.current_page == 1:
-            prev = '<li><a class= "page" href="javascript:void(0);">上一页</a></li>'
-            page_list.append(prev)
+            for i in range(int(start_index), int(end_index)):
+                if i == self.current_page:  # .pagination .page.active   page和active没有空格
+                    temp = '<li><a class= "page active-pagination" href="%s?p=%s#%s">%s</a></li>' % (base_url,i,args[0], i)
+                else:  # 根据选中的页面，显示不同样式
+                    temp = '<li><a class= "page" href="%s?p=%s#%s">%s</a></li>' % (base_url,i,args[0], i)
+                page_list.append(temp)
+
+            if self.current_page == self.all_count:
+                prev = '<li><a class= "page" href="javascript:void(0);">下一页</a></li>'
+                page_list.append(prev)
+            else:
+                prev = '<li><a class= "page" href="%s?p=%s#%s">下一页</a></li>' % (base_url,self.current_page + 1,args[0])
+                page_list.append(prev)
         else:
-            prev = '<li><a class= "page" href="%s?p=%s">上一页</a></li>' % (base_url,self.current_page - 1)
-            page_list.append(prev)
+            if self.current_page == 1:
+                prev = '<li><a class= "page" href="javascript:void(0);">上一页</a></li>'
+                page_list.append(prev)
+            else:
+                prev = '<li><a class= "page" href="%s?p=%s">上一页</a></li>' % (base_url, self.current_page - 1)
+                page_list.append(prev)
 
-        for i in range(int(start_index), int(end_index)):
-            if i == self.current_page:  # .pagination .page.active   page和active没有空格
-                temp = '<li><a class= "page active-pagination" href="%s?p=%s">%s</a></li>' % (base_url,i, i)
-            else:  # 根据选中的页面，显示不同样式
-                temp = '<li><a class= "page" href="%s?p=%s">%s</a></li>' % (base_url,i, i)
-            page_list.append(temp)
+            for i in range(int(start_index), int(end_index)):
+                if i == self.current_page:  # .pagination .page.active   page和active没有空格
+                    temp = '<li><a class= "page active-pagination" href="%s?p=%s">%s</a></li>' % (base_url, i, i)
+                else:  # 根据选中的页面，显示不同样式
+                    temp = '<li><a class= "page" href="%s?p=%s">%s</a></li>' % (base_url, i, i)
+                page_list.append(temp)
 
-        if self.current_page == self.all_count:
-            prev = '<li><a class= "page" href="javascript:void(0);">下一页</a></li>'
-            page_list.append(prev)
-        else:
-            prev = '<li><a class= "page" href="%s?p=%s">下一页</a></li>' % (base_url,self.current_page + 1)
-            page_list.append(prev)
+            if self.current_page == self.all_count:
+                prev = '<li><a class= "page" href="javascript:void(0);">下一页</a></li>'
+                page_list.append(prev)
+            else:
+                prev = '<li><a class= "page" href="%s?p=%s">下一页</a></li>' % (base_url, self.current_page + 1)
+                page_list.append(prev)
 
 
         #

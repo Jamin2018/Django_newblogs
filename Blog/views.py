@@ -6,10 +6,10 @@ from utils.pagination import Page
 from django.urls import reverse
 # Create your views here.
 
-#记录日志
-import logging
-logger = logging.getLogger("django") # 为loggers中定义的名称
-# logger.info("some info...")
+# #记录日志
+# import logging
+# logger = logging.getLogger("django") # 为loggers中定义的名称
+# # logger.info("some info...")
 
 
 def index(request,**kwargs):
@@ -317,9 +317,10 @@ def myblog(request,site,nid):
     # 分页
     current_page = request.GET.get('p', 1)  # 获取对应get数据p: href="/user_list/?p=%s
     current_page = int(current_page)
-    page = Page(current_page, len(comment), 4)
+    page = Page(current_page, len(comment), 10)
     data = comment[page.start:page.end]  # 列表切片
-    page_str = page.page_str(request.path_info)
+    k ='content_comment'
+    page_str = page.page_str(request.path_info,k)
     comment_count = len(comment)
     page_start = page.start
     return render(request, 'myblog.html', {'userinfo': UserInfo,
@@ -337,6 +338,7 @@ def myblog(request,site,nid):
 
 def comment(request):
     if request.method == 'POST':
+        comment_id = request.POST.get('comment_id')
         content = request.POST.get('content')
         url = request.POST.get('article_url')
         nid = request.POST.get('article_nid')
@@ -344,7 +346,7 @@ def comment(request):
         n = models.Article.objects.filter(nid=nid).values('comment_count').first()['comment_count']
         n += 1
         models.Article.objects.filter(nid=nid).update(comment_count=n)
-        models.Comment.objects.create(content=content,article_id=nid,user_id=uid)
-
-        return redirect(url)
+        models.Comment.objects.create(content=content,article_id=nid,user_id=uid,reply_id=comment_id)
+        new_url = url+'#content_comment'
+        return redirect(new_url)
 

@@ -6,11 +6,11 @@ from datetime import datetime
 #分页
 from utils.pagination import Page
 from django.urls import reverse
-
-#记录日志
-import logging
-logger = logging.getLogger("django") # 为loggers中定义的名称
-logger.info("some info...")
+#
+# #记录日志
+# import logging
+# logger = logging.getLogger("django") # 为loggers中定义的名称
+# logger.info("some info...")
 
 @auth
 def index(request):

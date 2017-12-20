@@ -1,6 +1,8 @@
 {% extends 'blog_layout.html' %}
 {% load customfuntions %}
 
+
+
 {% block haeder %}
     <div class="pg-header pg-header-backcolor">
         <div class="pg-header-h">
@@ -17,7 +19,7 @@
         </div>
     </div>
     <div style="border: 1px solid #bdb7bf"></div>
-    <div style="height: 70px"></div>
+    <div style="height: 50px"></div>
 {% endblock %}
 
 {% block content %}
@@ -45,11 +47,12 @@
                         您需要登录后才可以回帖 <a href="/login/">登录</a> | <a href="/registration/">立即注册</a>
                     </div>
                 {% else %}
-                    <div style="background-color: white;font-size: 16px;color: #999999;padding: 30px;border-bottom: 1px dashed #e4e4e4;">
+                    <div id="content_comment" style="background-color: white;font-size: 16px;color: #999999;padding: 30px;border-bottom: 1px dashed #e4e4e4;">
                         <form method="POST" action="/comment/">
                             <input style="display: none" type="text" name="article_url" value="/{{ blog.site }}/{{ obj.nid }}.html">
                             <input style="display: none" type="text" name="article_nid" value="{{ obj.nid }}">
-                            <textarea name="content" class="form-control" placeholder="发表你的评论"></textarea>
+                            <input style="display: none" type="text" name="comment_id" id="form_comment_id" value="">
+                            <textarea name="content" class="form-control" id="form_content" placeholder="发表你的评论"></textarea>
                             <input type="submit" class="btn btn-default float-right" style="border:1px solid brown;color: brown;margin-top: 20px" value="发表评论">
                         </form>
                         <div style="clear: both"></div>
@@ -60,20 +63,33 @@
                         {% for i in comment %}
                             <div style="background-color: white;font-size: 16px;color: #999999;padding: 20px 40px;border-bottom: 1px dashed #e4e4e4">
                                 <div>
-                                    <div class="float-left" style="color: blue;margin-right: 20px">{{ i.user.username }} </div>
+                                    <div id="comment_name" class="float-left" style="color: blue;margin-right: 20px">{{ i.user.username }} </div>
+                                    <div id="comment_id" class="float-left" style="color: blue;margin-right: 20px">{{ i.nid }}</div>
                                     <div class="float-left">{{ i.create_time | date:'Y-m-d H:i:s' }}</div>
-                                    <div class="float-right" style="font-size: 15px">{{ forloop.counter0 | add:page_start | subnum:comment_count}}楼</div>
+                                    <div  id="reply" class="float-right">
+                                        <a href="#content_comment">回复</a>
+                                    </div>
+                                    <div class="float-right" style="font-size: 15px;margin-right: 20px">{{ forloop.counter0 | add:page_start | subnum:comment_count}}楼</div>
                                     <div style="clear: both"></div>
                                 </div>
-
-                                <div style="padding: 15px;color: black">{{ i.content }}</div>
+                                <div class="">
+                                    <div style="padding: 10px;">
+                                        {% if i.reply %}
+                                            <div class="" style="margin-left: -10px">@{{ i.reply.user.nickname }}</div>
+                                        {% endif %}
+                                        <div class="">
+                                            <div style=";color: black;margin-top: 5px">{{ i.content }}</div>
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                </div>
 
                             </div>
                         {% endfor %}
-        <div style="height: 80px;text-align: center;background-color: white;font-size: 16px;color: #999999;padding-top: 20px">
-            {% include 'fenye.html' %}
-        </div>
-        <div style="clear: both"></div>
+                        <div style="height: 80px;text-align: center;background-color: white;font-size: 16px;color: #999999;padding-top: 20px;margin-bottom: 50px">
+                            {% include 'fenye.html' %}
+                        </div>
+                        <div style="clear: both"></div>
                     </div>
                 {% else %}
                     <div style="background-color: white;font-size: 16px;color: #999999;padding: 30px;border-top: 1px dashed #e4e4e4;text-align: center">
@@ -128,12 +144,25 @@
 
     <script src="/static/js/jquery-1.12.4.js"></script>
     <script>
+
+        $('#reply a').click(function () {
+            Reply(this)
+        });
+
         $('#AddFavor i').click(function () {
             AddFavor(this);
         });
         $('#deleteFavor i').click(function () {
             deleteFavor(this);
         });
+
+        function Reply(self) {
+            var v = $(self).parent().parent().find('#comment_id').text();
+            var n = $(self).parent().parent().find('#comment_name').text();
+            var m = '回复：'+ n;
+            $('#form_comment_id').attr('value',v);
+            $('#form_content').attr('placeholder',m);
+        }
 
         function AddFavor(self) {
             var v = $(self).parent().parent().find('#article_id').text();
