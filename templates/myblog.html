@@ -62,7 +62,7 @@
                                 <div>
                                     <div class="float-left" style="color: blue;margin-right: 20px">{{ i.user.username }} </div>
                                     <div class="float-left">{{ i.create_time | date:'Y-m-d H:i:s' }}</div>
-                                    <div class="float-right" style="font-size: 15px">{{forloop.revcounter}}楼</div>
+                                    <div class="float-right" style="font-size: 15px">{{ forloop.counter0 | add:page_start | subnum:comment_count}}楼</div>
                                     <div style="clear: both"></div>
                                 </div>
 

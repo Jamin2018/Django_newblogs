@@ -12,7 +12,11 @@
     {% endblock %}
 </head>
 
-<body style="background-image: url(/static/imgs/back-image/{{ blog.theme }}.jpg) ">
+{% if request.session.user_info.blog__theme %}
+<body style="background-image: url(/static/imgs/back-image/{{ request.session.user_info.blog__theme }}.jpg) ">
+{% else %}
+<body style="background-image: url(/static/imgs/back-image/1.jpg) ">
+{% endif %}
 
 {% block haeder %}
 <div class="pg-header pg-header-backcolor">

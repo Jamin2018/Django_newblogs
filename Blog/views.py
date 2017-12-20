@@ -6,6 +6,12 @@ from utils.pagination import Page
 from django.urls import reverse
 # Create your views here.
 
+#记录日志
+import logging
+logger = logging.getLogger("django") # 为loggers中定义的名称
+# logger.info("some info...")
+
+
 def index(request,**kwargs):
     if request.method =='GET':
         article_type_list = models.Article.type_choices
@@ -25,7 +31,7 @@ def index(request,**kwargs):
         page_num = 10
         page = Page(current_page, len(all_articles), page_num)
         data = all_articles[page.start:page.end]  # 列表切片
-        page_str = page.page_str('/')
+        page_str = page.page_str(request.path_info)
         return render(request,'index.html',{'all_articles':data,
                                             'page_str': page_str,
                                             'hot':hot_articles,
@@ -272,7 +278,8 @@ def blog(request,site,**kwargs):
     page_num = 10
     page = Page(current_page, len(articles), page_num)
     data = articles[page.start:page.end]  # 列表切片
-    page_str = page.page_str('/%s.html' % site)
+    page_str = page.page_str(request.path_info)
+    page_start = page.start
 
 
     return render(request,'blog.html',{'userinfo':UserInfo,
@@ -286,6 +293,7 @@ def blog(request,site,**kwargs):
                                        'category_list': category_list,
                                        'arg_dic': kwargs,
                                        'data_count': data_count,
+                                       'page_start':page_start,
                                        })
 
 
@@ -309,10 +317,11 @@ def myblog(request,site,nid):
     # 分页
     current_page = request.GET.get('p', 1)  # 获取对应get数据p: href="/user_list/?p=%s
     current_page = int(current_page)
-    page = Page(current_page, len(comment), 7)
+    page = Page(current_page, len(comment), 4)
     data = comment[page.start:page.end]  # 列表切片
-    page_str = page.page_str('/%s/%s.html' % (site,nid))
-
+    page_str = page.page_str(request.path_info)
+    comment_count = len(comment)
+    page_start = page.start
     return render(request, 'myblog.html', {'userinfo': UserInfo,
                                            'blog': blog,
                                            'articles_count': articles_count,
@@ -322,6 +331,8 @@ def myblog(request,site,nid):
                                            'obj_content':obj_content,
                                            'comment':data,
                                            'page_str': page_str,
+                                           'page_start': page_start,
+                                           'comment_count': comment_count,
                                            })
 
 def comment(request):

@@ -31,15 +31,15 @@ body{
     top: 52px;
     left: 0;
     bottom: 0;
-    border-top: 1px solid #777777;
-    border-right: 1px solid #777777;
+    border-top: 1px solid #d2d2d2;
+    border-right: 1px solid #d2d2d2;
 }
 .pg-left-item{
     cursor: pointer;
     height: 38px;
     line-height: 38px;
     padding-left: 10px;
-    border-bottom: 1px dashed #777777;
+    border-bottom: 1px dashed #d2d2d2;
 }
 .pg-right{
     position: absolute;
@@ -47,8 +47,8 @@ body{
     left: 204px;
     right: 0;
     bottom: 0;
-    border-top: 1px solid #777777;
-    border-left: 1px solid #777777;
+    border-top: 1px solid #d2d2d2;
+    border-left: 1px solid #d2d2d2;
 }
 .edit-content{
     margin: 20px;

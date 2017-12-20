@@ -9,7 +9,8 @@ class Page(object):
             self.current_page = 1
         self.data_count = data_count
         self.per_page_count = per_page_count
-        self.pager_num = page_num
+        self.page_num = page_num
+
     @property
     def start(self):
         return (self.current_page - 1) * self.per_page_count
@@ -28,20 +29,20 @@ class Page(object):
     def page_str(self,base_url):
         page_list = []
         # 控制页码显示
-        page_num = 7
-        if self.all_count < page_num:
+
+        if self.all_count < self.page_num:
             start_index = 1
             end_index = self.all_count + 1
         else:
-            if self.current_page <= (page_num + 1) / 2:
+            if self.current_page <= (self.page_num + 1) / 2:
                 start_index = 1
-                end_index = page_num + 1
+                end_index = self.page_num + 1
             else:
-                start_index = self.current_page - (page_num - 1) / 2
-                end_index = self.current_page + (page_num + 1) / 2
-                if self.current_page + (page_num - 1) / 2 > self.all_count:
+                start_index = self.current_page - (self.page_num - 1) / 2
+                end_index = self.current_page + (self.page_num + 1) / 2
+                if self.current_page + (self.page_num - 1) / 2 > self.all_count:
                     end_index = self.all_count + 1
-                    start_index = self.all_count - (page_num - 1)
+                    start_index = self.all_count - (self.page_num - 1)
 
         if self.current_page == 1:
             prev = '<li><a class= "page" href="javascript:void(0);">上一页</a></li>'
@@ -52,7 +53,7 @@ class Page(object):
 
         for i in range(int(start_index), int(end_index)):
             if i == self.current_page:  # .pagination .page.active   page和active没有空格
-                temp = '<li><a class= "page active" href="%s?p=%s">%s</a></li>' % (base_url,i, i)
+                temp = '<li><a class= "page active-pagination" href="%s?p=%s">%s</a></li>' % (base_url,i, i)
             else:  # 根据选中的页面，显示不同样式
                 temp = '<li><a class= "page" href="%s?p=%s">%s</a></li>' % (base_url,i, i)
             page_list.append(temp)
@@ -63,6 +64,8 @@ class Page(object):
         else:
             prev = '<li><a class= "page" href="%s?p=%s">下一页</a></li>' % (base_url,self.current_page + 1)
             page_list.append(prev)
+
+
         #
         # jump = '''
         #    <input type = 'text'><a onclick="jumpTo(this,'%s?p=');">GO</a>

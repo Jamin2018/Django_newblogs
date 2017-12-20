@@ -18,6 +18,7 @@
         <div style="padding: 10px">
             <div class="conditions row clearfix" style="margin: 0;padding: 8px 0;">
                 <div>
+                    <div style="float: left;padding: 3px 10px;margin: 5px;font-weight: bold">类型:</div>
                     {% if arg_dic.article_type_id == 0 %}
                         <a class="active" href="/bm/articles-0-{{ arg_dic.category_id }}.html">全部</a>
                     {% else %}
@@ -32,6 +33,7 @@
                     {% endfor %}
                 </div>
                 <div>
+                <div style="float: left;padding: 3px 10px;margin: 5px;font-weight: bold">分类:</div>
                     {% if arg_dic.category_id == 0 %}
                         <a class="active" href="/bm/articles-{{ arg_dic.article_type_id }}-0.html">全部</a>
                     {% else %}
@@ -71,7 +73,7 @@
             <tbody>
             {% for row in arts %}
                 <tr nid="{{ row.nid }}">
-                    <td style="width: 50px;text-align: center">{{forloop.counter}}</td>
+                    <td style="width: 50px;text-align: center">{{forloop.counter | add:page_start }}</td>
                     <td><a href="/{{ row.blog.site }}/{{ row.nid }}.html">{{ row.title }}</a></td>
                     <td>{{ row.create_time | date:"Y-m-d H:i:s" }}</td>
                     <td>
@@ -89,7 +91,10 @@
             {% endfor %}
             </tbody>
         </table>
+    <div style="text-align: center">
         {% include 'fenye.html' %}
+    </div>
+
     </div>
 {% endblock %}
 

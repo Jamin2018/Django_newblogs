@@ -7,6 +7,10 @@ from datetime import datetime
 from utils.pagination import Page
 from django.urls import reverse
 
+#记录日志
+import logging
+logger = logging.getLogger("django") # 为loggers中定义的名称
+logger.info("some info...")
 
 @auth
 def index(request):
@@ -45,12 +49,17 @@ def articles(request,*args,**kwargs):
     page = Page(current_page,len(articles),7)
     data = articles[page.start:page.end]  # 列表切片
     page_str = page.page_str(reverse('articles', kwargs=kwargs))
+
+    #显示序号
+    page_start = page.start
+
     return render(request,'BM_articles.html',{'arts':data,
                                               'page_str':page_str,
                                               'article_type_list':article_type_list,
                                               'category_list':category_list,
                                               'arg_dic':kwargs,
-                                              'data_count':data_count,})
+                                              'data_count':data_count,
+                                              'page_start':page_start})
 
 
 @auth

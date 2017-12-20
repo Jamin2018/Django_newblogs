@@ -1,0 +1,282 @@
+DEBUG 2017-12-20 17:00:51,236 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2017-12-20 17:00:51,236 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+DEBUG 2017-12-20 17:00:53,113 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_article"."nid", "Blog_article"."title", "Blog_article"."summary", "Blog_article"."read_count", "Blog_article"."comment_count", "Blog_article"."up_count", "Blog_article"."down_count", "Blog_article"."create_time", "Blog_article"."blog_id", "Blog_article"."category_id", "Blog_article"."article_type_id" FROM "Blog_article" ORDER BY "Blog_article"."create_time" DESC; args=()
+DEBUG 2017-12-20 17:00:53,151 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'prd36vmushvqrmzur5hw1nydna1h0hyo' AND "django_session"."expire_date" > '2017-12-20 09:00:53.149881'); args=('prd36vmushvqrmzur5hw1nydna1h0hyo', '2017-12-20 09:00:53.149881')
+DEBUG 2017-12-20 17:00:53,152 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py base.py base _resolve_lookup 925: Exception while resolving variable 'article_type_id' in template 'index.html'.
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 882, in _resolve_lookup
+    current = current[bit]
+KeyError: 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'dict' object has no attribute 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [article_type_id] in '{}'
+DEBUG 2017-12-20 17:00:53,154 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py base.py base _resolve_lookup 925: Exception while resolving variable 'article_type_id' in template 'index.html'.
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 882, in _resolve_lookup
+    current = current[bit]
+KeyError: 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'dict' object has no attribute 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [article_type_id] in '{}'
+DEBUG 2017-12-20 17:00:53,158 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py base.py base _resolve_lookup 925: Exception while resolving variable 'article_type_id' in template 'index.html'.
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 882, in _resolve_lookup
+    current = current[bit]
+KeyError: 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'dict' object has no attribute 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [article_type_id] in '{}'
+DEBUG 2017-12-20 17:00:53,163 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py base.py base _resolve_lookup 925: Exception while resolving variable 'article_type_id' in template 'index.html'.
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 882, in _resolve_lookup
+    current = current[bit]
+KeyError: 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'dict' object has no attribute 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [article_type_id] in '{}'
+DEBUG 2017-12-20 17:00:53,165 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py base.py base _resolve_lookup 925: Exception while resolving variable 'article_type_id' in template 'index.html'.
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 882, in _resolve_lookup
+    current = current[bit]
+KeyError: 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'dict' object has no attribute 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [article_type_id] in '{}'
+DEBUG 2017-12-20 17:00:53,166 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py base.py base _resolve_lookup 925: Exception while resolving variable 'article_type_id' in template 'index.html'.
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 882, in _resolve_lookup
+    current = current[bit]
+KeyError: 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'dict' object has no attribute 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'article_type_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [article_type_id] in '{}'
+DEBUG 2017-12-20 17:00:53,169 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.001) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,172 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_userinfo"."nid", "Blog_userinfo"."username", "Blog_userinfo"."password", "Blog_userinfo"."nickname", "Blog_userinfo"."email", "Blog_userinfo"."avatar", "Blog_userinfo"."create_time" FROM "Blog_userinfo" WHERE "Blog_userinfo"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,464 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,465 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_userinfo"."nid", "Blog_userinfo"."username", "Blog_userinfo"."password", "Blog_userinfo"."nickname", "Blog_userinfo"."email", "Blog_userinfo"."avatar", "Blog_userinfo"."create_time" FROM "Blog_userinfo" WHERE "Blog_userinfo"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,467 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.001) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,468 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.001) SELECT "Blog_userinfo"."nid", "Blog_userinfo"."username", "Blog_userinfo"."password", "Blog_userinfo"."nickname", "Blog_userinfo"."email", "Blog_userinfo"."avatar", "Blog_userinfo"."create_time" FROM "Blog_userinfo" WHERE "Blog_userinfo"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,469 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,470 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_userinfo"."nid", "Blog_userinfo"."username", "Blog_userinfo"."password", "Blog_userinfo"."nickname", "Blog_userinfo"."email", "Blog_userinfo"."avatar", "Blog_userinfo"."create_time" FROM "Blog_userinfo" WHERE "Blog_userinfo"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,471 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,472 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_userinfo"."nid", "Blog_userinfo"."username", "Blog_userinfo"."password", "Blog_userinfo"."nickname", "Blog_userinfo"."email", "Blog_userinfo"."avatar", "Blog_userinfo"."create_time" FROM "Blog_userinfo" WHERE "Blog_userinfo"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,473 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,475 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_userinfo"."nid", "Blog_userinfo"."username", "Blog_userinfo"."password", "Blog_userinfo"."nickname", "Blog_userinfo"."email", "Blog_userinfo"."avatar", "Blog_userinfo"."create_time" FROM "Blog_userinfo" WHERE "Blog_userinfo"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,476 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,477 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_userinfo"."nid", "Blog_userinfo"."username", "Blog_userinfo"."password", "Blog_userinfo"."nickname", "Blog_userinfo"."email", "Blog_userinfo"."avatar", "Blog_userinfo"."create_time" FROM "Blog_userinfo" WHERE "Blog_userinfo"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,478 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,479 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_userinfo"."nid", "Blog_userinfo"."username", "Blog_userinfo"."password", "Blog_userinfo"."nickname", "Blog_userinfo"."email", "Blog_userinfo"."avatar", "Blog_userinfo"."create_time" FROM "Blog_userinfo" WHERE "Blog_userinfo"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,480 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,481 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_userinfo"."nid", "Blog_userinfo"."username", "Blog_userinfo"."password", "Blog_userinfo"."nickname", "Blog_userinfo"."email", "Blog_userinfo"."avatar", "Blog_userinfo"."create_time" FROM "Blog_userinfo" WHERE "Blog_userinfo"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,482 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,483 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_userinfo"."nid", "Blog_userinfo"."username", "Blog_userinfo"."password", "Blog_userinfo"."nickname", "Blog_userinfo"."email", "Blog_userinfo"."avatar", "Blog_userinfo"."create_time" FROM "Blog_userinfo" WHERE "Blog_userinfo"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,485 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_article"."nid", "Blog_article"."title", "Blog_article"."summary", "Blog_article"."read_count", "Blog_article"."comment_count", "Blog_article"."up_count", "Blog_article"."down_count", "Blog_article"."create_time", "Blog_article"."blog_id", "Blog_article"."category_id", "Blog_article"."article_type_id" FROM "Blog_article" ORDER BY "Blog_article"."up_count" DESC LIMIT 5; args=()
+DEBUG 2017-12-20 17:00:53,487 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.001) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,488 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,488 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,489 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,490 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,491 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_article"."nid", "Blog_article"."title", "Blog_article"."summary", "Blog_article"."read_count", "Blog_article"."comment_count", "Blog_article"."up_count", "Blog_article"."down_count", "Blog_article"."create_time", "Blog_article"."blog_id", "Blog_article"."category_id", "Blog_article"."article_type_id" FROM "Blog_article" ORDER BY "Blog_article"."read_count" DESC LIMIT 5; args=()
+DEBUG 2017-12-20 17:00:53,492 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,493 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.001) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,493 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,494 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+DEBUG 2017-12-20 17:00:53,495 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."nid" = 1; args=(1,)
+INFO 2017-12-20 17:00:53,496 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "GET / HTTP/1.1" 200 22204
+INFO 2017-12-20 17:00:53,510 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "GET /static/css/index.css HTTP/1.1" 304 0
+DEBUG 2017-12-20 17:01:07,787 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'prd36vmushvqrmzur5hw1nydna1h0hyo' AND "django_session"."expire_date" > '2017-12-20 09:01:07.787665'); args=('prd36vmushvqrmzur5hw1nydna1h0hyo', '2017-12-20 09:01:07.787665')
+INFO 2017-12-20 17:01:07,803 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "GET /bm/ HTTP/1.1" 200 1984
+DEBUG 2017-12-20 17:01:09,053 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'prd36vmushvqrmzur5hw1nydna1h0hyo' AND "django_session"."expire_date" > '2017-12-20 09:01:09.053323'); args=('prd36vmushvqrmzur5hw1nydna1h0hyo', '2017-12-20 09:01:09.053323')
+DEBUG 2017-12-20 17:01:09,053 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_userinfo"."nid", "Blog_userinfo"."username", "Blog_userinfo"."password", "Blog_userinfo"."nickname", "Blog_userinfo"."email", "Blog_userinfo"."avatar", "Blog_userinfo"."create_time" FROM "Blog_userinfo" WHERE "Blog_userinfo"."nid" = 1 ORDER BY "Blog_userinfo"."nid" ASC LIMIT 1; args=(1,)
+DEBUG 2017-12-20 17:01:09,053 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_blog"."nid", "Blog_blog"."title", "Blog_blog"."site", "Blog_blog"."user_id", "Blog_blog"."theme" FROM "Blog_blog" WHERE "Blog_blog"."user_id" = 1 ORDER BY "Blog_blog"."nid" ASC LIMIT 1; args=(1,)
+INFO 2017-12-20 17:01:09,068 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "GET /bm/mydetail/ HTTP/1.1" 200 7154
+DEBUG 2017-12-20 17:01:09,469 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'prd36vmushvqrmzur5hw1nydna1h0hyo' AND "django_session"."expire_date" > '2017-12-20 09:01:09.469739'); args=('prd36vmushvqrmzur5hw1nydna1h0hyo', '2017-12-20 09:01:09.469739')
+INFO 2017-12-20 17:01:09,469 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "GET /bm/tag/ HTTP/1.1" 200 5656
+DEBUG 2017-12-20 17:01:10,732 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'prd36vmushvqrmzur5hw1nydna1h0hyo' AND "django_session"."expire_date" > '2017-12-20 09:01:10.732570'); args=('prd36vmushvqrmzur5hw1nydna1h0hyo', '2017-12-20 09:01:10.732570')
+INFO 2017-12-20 17:01:10,732 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "GET /bm/tag/ HTTP/1.1" 200 5656
+DEBUG 2017-12-20 17:01:11,088 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'prd36vmushvqrmzur5hw1nydna1h0hyo' AND "django_session"."expire_date" > '2017-12-20 09:01:11.088586'); args=('prd36vmushvqrmzur5hw1nydna1h0hyo', '2017-12-20 09:01:11.088586')
+DEBUG 2017-12-20 17:01:11,088 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT (1) AS "a" FROM "Blog_article" WHERE "Blog_article"."blog_id" = 1 LIMIT 1; args=(1,)
+DEBUG 2017-12-20 17:01:11,088 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_category"."nid", "Blog_category"."title", "Blog_category"."blog_id" FROM "Blog_category" WHERE "Blog_category"."blog_id" = 1; args=(1,)
+DEBUG 2017-12-20 17:01:11,088 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_article"."nid", "Blog_article"."title", "Blog_article"."summary", "Blog_article"."read_count", "Blog_article"."comment_count", "Blog_article"."up_count", "Blog_article"."down_count", "Blog_article"."create_time", "Blog_article"."blog_id", "Blog_article"."category_id", "Blog_article"."article_type_id" FROM "Blog_article" WHERE "Blog_article"."blog_id" = 1; args=(1,)
+INFO 2017-12-20 17:01:11,104 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "GET /bm/category/ HTTP/1.1" 200 9331
+DEBUG 2017-12-20 17:01:12,792 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.002) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'prd36vmushvqrmzur5hw1nydna1h0hyo' AND "django_session"."expire_date" > '2017-12-20 09:01:12.789670'); args=('prd36vmushvqrmzur5hw1nydna1h0hyo', '2017-12-20 09:01:12.789670')
+DEBUG 2017-12-20 17:01:12,794 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.003) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'prd36vmushvqrmzur5hw1nydna1h0hyo' AND "django_session"."expire_date" > '2017-12-20 09:01:12.787670'); args=('prd36vmushvqrmzur5hw1nydna1h0hyo', '2017-12-20 09:01:12.787670')
+DEBUG 2017-12-20 17:01:12,795 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) BEGIN; args=None
+DEBUG 2017-12-20 17:01:12,796 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.002) SELECT (1) AS "a" FROM "Blog_article" WHERE "Blog_article"."blog_id" = 1 LIMIT 1; args=(1,)
+DEBUG 2017-12-20 17:01:12,797 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.001) INSERT INTO "Blog_category" ("title", "blog_id") VALUES ('风格化风格化', 1); args=['风格化风格化', 1]
+DEBUG 2017-12-20 17:01:12,798 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_category"."nid", "Blog_category"."title", "Blog_category"."blog_id" FROM "Blog_category" WHERE "Blog_category"."blog_id" = 1; args=(1,)
+DEBUG 2017-12-20 17:01:12,805 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.007) SELECT "Blog_article"."nid", "Blog_article"."title", "Blog_article"."summary", "Blog_article"."read_count", "Blog_article"."comment_count", "Blog_article"."up_count", "Blog_article"."down_count", "Blog_article"."create_time", "Blog_article"."blog_id", "Blog_article"."category_id", "Blog_article"."article_type_id" FROM "Blog_article" WHERE "Blog_article"."blog_id" = 1; args=(1,)
+INFO 2017-12-20 17:01:12,807 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "POST /bm/add-category/ HTTP/1.1" 200 3
+INFO 2017-12-20 17:01:12,816 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "GET /bm/category/? HTTP/1.1" 200 9331
+DEBUG 2017-12-20 17:01:14,377 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.002) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'prd36vmushvqrmzur5hw1nydna1h0hyo' AND "django_session"."expire_date" > '2017-12-20 09:01:14.372946'); args=('prd36vmushvqrmzur5hw1nydna1h0hyo', '2017-12-20 09:01:14.372946')
+DEBUG 2017-12-20 17:01:14,378 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) BEGIN; args=None
+DEBUG 2017-12-20 17:01:14,381 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.003) INSERT INTO "Blog_category" ("title", "blog_id") VALUES ('风格化覆盖', 1); args=['风格化覆盖', 1]
+INFO 2017-12-20 17:01:14,395 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "POST /bm/add-category/ HTTP/1.1" 200 3
+DEBUG 2017-12-20 17:01:14,397 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.016) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'prd36vmushvqrmzur5hw1nydna1h0hyo' AND "django_session"."expire_date" > '2017-12-20 09:01:14.380947'); args=('prd36vmushvqrmzur5hw1nydna1h0hyo', '2017-12-20 09:01:14.380947')
+DEBUG 2017-12-20 17:01:14,399 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT (1) AS "a" FROM "Blog_article" WHERE "Blog_article"."blog_id" = 1 LIMIT 1; args=(1,)
+DEBUG 2017-12-20 17:01:14,400 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_category"."nid", "Blog_category"."title", "Blog_category"."blog_id" FROM "Blog_category" WHERE "Blog_category"."blog_id" = 1; args=(1,)
+DEBUG 2017-12-20 17:01:14,402 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.001) SELECT "Blog_article"."nid", "Blog_article"."title", "Blog_article"."summary", "Blog_article"."read_count", "Blog_article"."comment_count", "Blog_article"."up_count", "Blog_article"."down_count", "Blog_article"."create_time", "Blog_article"."blog_id", "Blog_article"."category_id", "Blog_article"."article_type_id" FROM "Blog_article" WHERE "Blog_article"."blog_id" = 1; args=(1,)
+INFO 2017-12-20 17:01:14,408 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "GET /bm/category/? HTTP/1.1" 200 10898
+DEBUG 2017-12-20 17:02:18,947 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'prd36vmushvqrmzur5hw1nydna1h0hyo' AND "django_session"."expire_date" > '2017-12-20 09:02:18.944801'); args=('prd36vmushvqrmzur5hw1nydna1h0hyo', '2017-12-20 09:02:18.944801')
+DEBUG 2017-12-20 17:02:18,952 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) BEGIN; args=None
+DEBUG 2017-12-20 17:02:18,954 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.001) INSERT INTO "Blog_category" ("title", "blog_id") VALUES ('斯蒂芬斯蒂芬斯蒂芬', 1); args=['斯蒂芬斯蒂芬斯蒂芬', 1]
+INFO 2017-12-20 17:02:18,971 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "POST /bm/add-category/ HTTP/1.1" 200 3
+DEBUG 2017-12-20 17:02:18,977 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.020) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'prd36vmushvqrmzur5hw1nydna1h0hyo' AND "django_session"."expire_date" > '2017-12-20 09:02:18.956801'); args=('prd36vmushvqrmzur5hw1nydna1h0hyo', '2017-12-20 09:02:18.956801')
+DEBUG 2017-12-20 17:02:18,980 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.001) SELECT (1) AS "a" FROM "Blog_article" WHERE "Blog_article"."blog_id" = 1 LIMIT 1; args=(1,)
+DEBUG 2017-12-20 17:02:18,981 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_category"."nid", "Blog_category"."title", "Blog_category"."blog_id" FROM "Blog_category" WHERE "Blog_category"."blog_id" = 1; args=(1,)
+DEBUG 2017-12-20 17:02:18,982 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.001) SELECT "Blog_article"."nid", "Blog_article"."title", "Blog_article"."summary", "Blog_article"."read_count", "Blog_article"."comment_count", "Blog_article"."up_count", "Blog_article"."down_count", "Blog_article"."create_time", "Blog_article"."blog_id", "Blog_article"."category_id", "Blog_article"."article_type_id" FROM "Blog_article" WHERE "Blog_article"."blog_id" = 1; args=(1,)
+INFO 2017-12-20 17:02:18,987 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "GET /bm/category/? HTTP/1.1" 200 10952
+DEBUG 2017-12-20 17:05:44,097 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2017-12-20 17:05:44,100 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+DEBUG 2017-12-20 17:06:32,708 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.002) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'prd36vmushvqrmzur5hw1nydna1h0hyo' AND "django_session"."expire_date" > '2017-12-20 09:06:32.703273'); args=('prd36vmushvqrmzur5hw1nydna1h0hyo', '2017-12-20 09:06:32.703273')
+DEBUG 2017-12-20 17:06:32,711 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.001) SELECT (1) AS "a" FROM "Blog_article" WHERE "Blog_article"."blog_id" = 1 LIMIT 1; args=(1,)
+DEBUG 2017-12-20 17:06:32,712 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.001) SELECT "Blog_category"."nid", "Blog_category"."title", "Blog_category"."blog_id" FROM "Blog_category" WHERE "Blog_category"."blog_id" = 1; args=(1,)
+DEBUG 2017-12-20 17:06:32,713 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_article"."nid", "Blog_article"."title", "Blog_article"."summary", "Blog_article"."read_count", "Blog_article"."comment_count", "Blog_article"."up_count", "Blog_article"."down_count", "Blog_article"."create_time", "Blog_article"."blog_id", "Blog_article"."category_id", "Blog_article"."article_type_id" FROM "Blog_article" WHERE "Blog_article"."blog_id" = 1; args=(1,)
+INFO 2017-12-20 17:06:32,732 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "GET /bm/category/ HTTP/1.1" 200 10952
+INFO 2017-12-20 17:06:52,946 C:\Users\Administrator\Desktop\JamBlog\Bm\views.py views.py views <module> 13: some info...
+DEBUG 2017-12-20 17:06:53,008 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.016) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2017-12-20 17:06:53,011 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+INFO 2017-12-20 17:13:11,257 C:\Users\Administrator\Desktop\JamBlog\Bm\views.py views.py views <module> 13: some info...
+DEBUG 2017-12-20 17:13:11,319 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2017-12-20 17:13:11,319 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+DEBUG 2017-12-20 17:15:41,964 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'prd36vmushvqrmzur5hw1nydna1h0hyo' AND "django_session"."expire_date" > '2017-12-20 09:15:41.964875'); args=('prd36vmushvqrmzur5hw1nydna1h0hyo', '2017-12-20 09:15:41.964875')
+DEBUG 2017-12-20 17:15:41,964 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT (1) AS "a" FROM "Blog_article" WHERE "Blog_article"."blog_id" = 1 LIMIT 1; args=(1,)
+DEBUG 2017-12-20 17:15:41,964 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_category"."nid", "Blog_category"."title", "Blog_category"."blog_id" FROM "Blog_category" WHERE "Blog_category"."blog_id" = 1; args=(1,)
+DEBUG 2017-12-20 17:15:41,964 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_article"."nid", "Blog_article"."title", "Blog_article"."summary", "Blog_article"."read_count", "Blog_article"."comment_count", "Blog_article"."up_count", "Blog_article"."down_count", "Blog_article"."create_time", "Blog_article"."blog_id", "Blog_article"."category_id", "Blog_article"."article_type_id" FROM "Blog_article" WHERE "Blog_article"."blog_id" = 1; args=(1,)
+ERROR 2017-12-20 17:15:42,302 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "GET /bm/category/ HTTP/1.1" 500 142768
+INFO 2017-12-20 17:15:49,147 C:\Users\Administrator\Desktop\JamBlog\Bm\views.py views.py views <module> 13: some info...
+DEBUG 2017-12-20 17:15:49,225 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2017-12-20 17:15:49,225 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+DEBUG 2017-12-20 17:15:51,877 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'prd36vmushvqrmzur5hw1nydna1h0hyo' AND "django_session"."expire_date" > '2017-12-20 09:15:51.877242'); args=('prd36vmushvqrmzur5hw1nydna1h0hyo', '2017-12-20 09:15:51.877242')
+DEBUG 2017-12-20 17:15:51,877 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT (1) AS "a" FROM "Blog_article" WHERE "Blog_article"."blog_id" = 1 LIMIT 1; args=(1,)
+DEBUG 2017-12-20 17:15:51,877 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_category"."nid", "Blog_category"."title", "Blog_category"."blog_id" FROM "Blog_category" WHERE "Blog_category"."blog_id" = 1; args=(1,)
+DEBUG 2017-12-20 17:15:51,892 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.016) SELECT "Blog_article"."nid", "Blog_article"."title", "Blog_article"."summary", "Blog_article"."read_count", "Blog_article"."comment_count", "Blog_article"."up_count", "Blog_article"."down_count", "Blog_article"."create_time", "Blog_article"."blog_id", "Blog_article"."category_id", "Blog_article"."article_type_id" FROM "Blog_article" WHERE "Blog_article"."blog_id" = 1; args=(1,)
+ERROR 2017-12-20 17:15:52,003 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "GET /bm/category/ HTTP/1.1" 500 142749
+DEBUG 2017-12-20 17:15:55,068 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'prd36vmushvqrmzur5hw1nydna1h0hyo' AND "django_session"."expire_date" > '2017-12-20 09:15:55.068674'); args=('prd36vmushvqrmzur5hw1nydna1h0hyo', '2017-12-20 09:15:55.068674')
+DEBUG 2017-12-20 17:15:55,087 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT (1) AS "a" FROM "Blog_article" WHERE "Blog_article"."blog_id" = 1 LIMIT 1; args=(1,)
+DEBUG 2017-12-20 17:15:55,088 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.000) SELECT "Blog_category"."nid", "Blog_category"."title", "Blog_category"."blog_id" FROM "Blog_category" WHERE "Blog_category"."blog_id" = 1; args=(1,)
+DEBUG 2017-12-20 17:15:55,090 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\db\backends\utils.py utils.py utils execute 91: (0.001) SELECT "Blog_article"."nid", "Blog_article"."title", "Blog_article"."summary", "Blog_article"."read_count", "Blog_article"."comment_count", "Blog_article"."up_count", "Blog_article"."down_count", "Blog_article"."create_time", "Blog_article"."blog_id", "Blog_article"."category_id", "Blog_article"."article_type_id" FROM "Blog_article" WHERE "Blog_article"."blog_id" = 1; args=(1,)
+ERROR 2017-12-20 17:15:55,198 C:\Users\Administrator\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\servers\basehttp.py basehttp.py basehttp log_message 124: "GET /bm/category/ HTTP/1.1" 500 142749

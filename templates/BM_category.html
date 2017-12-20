@@ -6,8 +6,8 @@
 {% block content %}
     <div>
         <ol class="breadcrumb">
-            <li><a href="#">分类管理</a></li>
-            <li class="active">分类列表</li>
+            <li><a href="#">博客管理</a></li>
+            <li class="active">分类管理</li>
         </ol>
         <div style="margin: 15px">
             <div class="row" style="padding: 20px 5px;">
@@ -62,7 +62,9 @@
                 {% endfor %}
                 </tbody>
             </table>
-            {% include 'fenye.html' %}
+                <div style="text-align: center">
+        {% include 'fenye.html' %}
+    </div>
         </div>
 
     </div>
