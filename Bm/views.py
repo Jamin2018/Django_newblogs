@@ -150,13 +150,15 @@ def mydetail(request):
 def upload_avatar(request):
     if request.method == 'POST':
         img = request.FILES.get('avatar_img')
-        print(img.name)
+        nid = request.POST.get('user_id')
         import os
-        img_path = os.path.join('static/imgs/',img.name)
+        img_path = os.path.join('static/imgs/avatar/',img.name)
         with open(img_path,'wb') as f:
             for i in img.chunks():
                 f.write(i)
-
+        img_path_s = '/'+img_path
+        models.UserInfo.objects.filter(nid=nid).update(avatar=img_path_s)
+        # print(img_path_s)
         return HttpResponse(img_path)
 
 

@@ -180,7 +180,7 @@ class RegistrationForm( django_forms.Form):
 
     username = fields.CharField(
         #自定义部件
-        widget=django_forms.TextInput(attrs={'class':'form-control'}),
+        widget=django_forms.TextInput(attrs={'class':'form-control','id':'username'}),
         min_length=3,
         max_length=12,
         error_messages={

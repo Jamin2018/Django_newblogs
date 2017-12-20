@@ -16,7 +16,7 @@
     <form id="fm" method="POST" action="/registration/">
         <div class="form-group">
             <label for="username">用户名</label>
-{#            <input type="text"  name="username" id="username" placeholder="请用户名">#}
+            {#            <input type="text"  name="username" id="username" placeholder="请用户名">#}
             {{ obj.username }}
             {{ obj.errors.username.0 }}
         </div>
@@ -39,46 +39,48 @@
             <div class="col-xs-3">
                 <input type="submit" class="btn btn-default" value="注 册">
             </div>
-{#            <div class="col-xs-9" style="padding-left: 0;">#}
-{#                <div class="alert alert-danger hide">#}
-{#                    <span style="padding: 0 5px 0 5px;display: inline-block;font-size: 14px">#}
-{#                        <i class="fa fa-minus-circle" aria-hidden="true"></i>#}
-{#                    </span>#}
-{#                    <span id="error_msg" style="font-size: 12px;"></span>#}
-{#                </div>#}
-{#            </div>#}
+            {#            <div class="col-xs-9" style="padding-left: 0;">#}
+            {#                <div class="alert alert-danger hide">#}
+            {#                    <span style="padding: 0 5px 0 5px;display: inline-block;font-size: 14px">#}
+            {#                        <i class="fa fa-minus-circle" aria-hidden="true"></i>#}
+            {#                    </span>#}
+            {#                    <span id="error_msg" style="font-size: 12px;"></span>#}
+            {#                </div>#}
+            {#            </div>#}
         </div>
     </form>
     <script src="/static/js/jquery-1.12.4.js"></script>
     <script type="text/javascript">
-{#        $(function () {#}
-{#            bindLogin();#}
-{#        });#}
-{#        function bindLogin() {#}
-{#            $('#submit').click(function () {#}
-{#                var $msg = $('#error_msg');#}
-{#                $msg.parent().addClass('hide');#}
-{#                $.ajax({#}
-{#                    url: '/login/',#}
-{#                    type: 'POST',#}
-{#                    data: $('#fm').serialize(),#}
-{#                    dataType: 'JSON',#}
-{#                    success: function (arg) {#}
-{#                        if(arg.status){#}
-{#                            location.href = '/'#}
-{#                        }else{#}
-{#                            $msg.parent().removeClass('hide');#}
-{#                            $msg.text(arg.message);#}
-{#                            var img = $('#check_code_img')[0];#}
-{#                            img.src = img.src + '?';#}
-{#                            $('#password,#check_code').val('');#}
-{#                        }#}
-{##}
-{#                    }#}
-{#                })#}
-{##}
-{#            })#}
-{#        }#}
+        $(function () {
+            $(function(){
+                $("#username").focus();
+            })
+        });
+        {#        function bindLogin() {#}
+        {#            $('#submit').click(function () {#}
+        {#                var $msg = $('#error_msg');#}
+        {#                $msg.parent().addClass('hide');#}
+        {#                $.ajax({#}
+        {#                    url: '/login/',#}
+        {#                    type: 'POST',#}
+        {#                    data: $('#fm').serialize(),#}
+        {#                    dataType: 'JSON',#}
+        {#                    success: function (arg) {#}
+        {#                        if(arg.status){#}
+        {#                            location.href = '/'#}
+        {#                        }else{#}
+        {#                            $msg.parent().removeClass('hide');#}
+        {#                            $msg.text(arg.message);#}
+        {#                            var img = $('#check_code_img')[0];#}
+        {#                            img.src = img.src + '?';#}
+        {#                            $('#password,#check_code').val('');#}
+        {#                        }#}
+        {##}
+        {#                    }#}
+        {#                })#}
+        {##}
+        {#            })#}
+        {#        }#}
     </script>
 </div>
 </body>

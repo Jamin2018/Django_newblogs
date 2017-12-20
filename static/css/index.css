@@ -102,3 +102,17 @@ body{
 .active-i a{
     color: white;
 }
+.mymotto{
+    margin-top: 10px;padding: 10px;border: 1px dashed #bdb7bf;height: 100px;
+}
+.img_head{
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.img_head img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}

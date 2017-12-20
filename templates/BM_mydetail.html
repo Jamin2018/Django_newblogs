@@ -76,11 +76,13 @@
                 <form method="POST" action="/bm/upload-avatar/" enctype="multipart/form-data"
                       target="upload_iframe">
                     <iframe  style="display:none " id="upload_iframe" name="upload_iframe"></iframe>
-                    <img id="previewImg" origin="/static/imgs/avatar/default.png"
-                         src="/static/imgs/avatar/default.png"
-                         style="border-radius: 50%;">
-
+                    {% if blog.user.avatar %}
+                        <img id="previewImg" src="{{ blog.user.avatar }}">
+                    {% else %}
+                        <img id="previewImg" src="/static/imgs/avatar/default.png">
+                    {% endif %}
                     <div class="text">点击图片更换(<a href="#">撤销</a>)</div>
+                    <input type="text" style="display: none" name="user_id" value="{{ blog.user.nid }}">
                     <input id="avatarImg" name="avatar_img" type="file" class="img-file"/>
                     {#                    <input id='bbb' type="submit" onclick="iframe()">#}
                 </form>
@@ -94,10 +96,10 @@
             $(this).parent().submit();
 
             $('#upload_iframe').load(function () {
-{#                            获取iframe返回值#}
+                {#                            获取iframe返回值#}
                 var iframeContents = this.contentWindow.document.body.innerText;
-{#                            如果是字典，就要JSON#}
-{#                            iframeContents = JSON.parse(iframeContents);#}
+                {#                            如果是字典，就要JSON#}
+                {#                            iframeContents = JSON.parse(iframeContents);#}
                 if (iframeContents) {
                     $('#previewImg').attr('src', '/' + iframeContents);
                 }

@@ -99,25 +99,7 @@
             </div>
         </div>
         <div class="float-left">
-            <div class="pg-left" style="border-bottom: 1px solid #e4e4e4">
-                <div style="margin-bottom: 10px">用户名：{{ userinfo.username }}</div>
-                <div style="margin-bottom: 20px">昵称：{{ userinfo.nickname }}</div>
-                <div>
-                    <div class="float-left" style="margin: 0 20px;text-align: center">
-                        <div>文章</div>
-                        <div style="font-weight: bold">{{ articles_count }}</div>
-                    </div>
-                    <div class="float-left" style="margin: 0 20px;text-align: center">
-                        <div>粉丝</div>
-                        <div>289</div>
-                    </div>
-                    <div style="clear: both"></div>
-                </div>
-                <div style="margin-top: 10px;padding: 10px;border: 1px dashed #bdb7bf;height: 100px;">
-                    <div style="text-align: center;font-size: 15px;font-weight: bold;color:#a10600 "><人生格言></div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;热爱科技，立志成为程序员的扫地少年。</div>
-                </div>
-            </div>
+            {% include "_my_haed_detail.html" %}
 
             <div class="pg-left" style="margin-top: 20px">
                 <div style="padding-bottom: 10px;border-bottom: 1px dashed #bdb7bf;font-size: 16px"><div style="float: left;width: 4px;height: 20px;background-color: #a10600"></div>&nbsp;&nbsp;最新文章</div>

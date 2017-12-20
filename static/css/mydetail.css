@@ -5,25 +5,26 @@
 }
 
 .avatar-container {
-    height: 200px;
-    width: 200px;
+    height: 180px;
+    width: 180px;
     padding: 2px;
-    border: 1px solid #dddddd;
+    /*border: 1px solid #dddddd;*/
+    /*overflow: hidden;*/
     position: relative;
 }
 
 .avatar-container img {
-    height: 100%;
-    width: 100%;
-    border: 0;
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
     overflow: hidden;
 }
 
 .avatar-container .text {
     text-align: center;
 }
-
-.avatar-container .img-file {
+.img-file {
+    width: 180px;
     top: 0;
     left: 0;
     right: 0;
@@ -34,4 +35,7 @@
 }
 .form-group{
     margin: 50px;
+}
+.text{
+
 }

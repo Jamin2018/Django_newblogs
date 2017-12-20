@@ -1,0 +1,38 @@
+<div class="pg-left" style="border-bottom: 1px solid #e4e4e4">
+    {% if request.session.user_info %}
+        <div>
+            <div class="img_head">
+                {% if userinfo.avatar %}
+                    <img id="previewImg" src="{{ userinfo.avatar }}">
+                {% else %}
+                    <img id="previewImg" src="/static/imgs/avatar/default.png">
+                {% endif %}
+            </div>
+            <div class="float-left">
+                <div style="font-size: 12px;color: #999999;width: 130px">用户名:</div>
+                <div style="font-size: 18px;padding-left: 10px">{{ userinfo.username }}</div>
+                <div style="font-size: 12px;color: #999999">昵称：</div>
+                <div style="font-size: 18px;padding-left: 10px;width: 130px">{{ userinfo.nickname }}</div>
+            </div>
+            <div style="clear: both"></div>
+
+        </div>
+                        <div>
+                    <div class="float-left" style="margin: 0 20px;text-align: center">
+                        <div>文章</div>
+                        <div style="font-weight: bold">{{ articles_count }}</div>
+                    </div>
+                    <div class="float-left" style="margin: 0 20px;text-align: center">
+                        <div>粉丝</div>
+                        <div>289</div>
+                    </div>
+                    <div style="clear: both"></div>
+                </div>
+        <div class="mymotto">
+            <div style="text-align: center;font-size: 15px;font-weight: bold;color:#a10600 "><人生格言></div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;热爱科技，立志成为程序员的扫地少年。</div>
+        </div>
+    {% else %}
+        <div style="text-align: center"><a href="/login/" style="color:black;">请登录</a></div>
+    {% endif %}
+</div>
