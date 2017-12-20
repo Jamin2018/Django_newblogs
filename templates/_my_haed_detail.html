@@ -3,14 +3,14 @@
         <div>
             <div class="img_head">
                 {% if userinfo.avatar %}
-                    <img id="previewImg" src="{{ userinfo.avatar }}">
+                    <a href="/{{ blog.site }}-0-0.html"><img id="previewImg" src="{{ userinfo.avatar }}"></a>
                 {% else %}
-                    <img id="previewImg" src="/static/imgs/avatar/default.png">
+                    <a href="/{{ blog.site }}-0-0.html"><img id="previewImg" src="/static/imgs/avatar/default.png"></a>
                 {% endif %}
             </div>
             <div class="float-left">
                 <div style="font-size: 12px;color: #999999;width: 130px">用户名:</div>
-                <div style="font-size: 18px;padding-left: 10px">{{ userinfo.username }}</div>
+                <div style="font-size: 18px;padding-left: 10px"><a href="/{{ blog.site }}-0-0.html" style="color: black">{{ userinfo.username }}</a></div>
                 <div style="font-size: 12px;color: #999999">昵称：</div>
                 <div style="font-size: 18px;padding-left: 10px;width: 130px">{{ userinfo.nickname }}</div>
             </div>

@@ -159,6 +159,10 @@ def upload_avatar(request):
         img_path_s = '/'+img_path
         models.UserInfo.objects.filter(nid=nid).update(avatar=img_path_s)
         # print(img_path_s)
+        # 重设sesion保持avatar同步
+        ses = request.session['user_info']
+        ses['avatar'] = img_path_s
+        request.session['user_info'] = ses
         return HttpResponse(img_path)
 
 
@@ -203,11 +207,12 @@ def category(request):
     page = Page(current_page,len(category_list),page_num)
     data = category_list[page.start:page.end]  # 列表切片
     page_str = page.page_str('/bm/category/')
+    page_start = page.start
 
 
     return render(request,'BM_category.html',{'category':data,
                                               'page_str': page_str,
-
+                                              'page_start':page_start,
                                               })
 
 @auth

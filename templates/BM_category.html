@@ -6,8 +6,8 @@
 {% block content %}
     <div>
         <ol class="breadcrumb">
-            <li><a href="#">博客管理</a></li>
-            <li class="active">分类管理</li>
+            <li><a href="#">bo管理</a></li>
+            <li class="active">分类列表</li>
         </ol>
         <div style="margin: 15px">
             <div class="row" style="padding: 20px 5px;">
@@ -44,7 +44,7 @@
                 <tbody>
                 {% for row in category %}
                     <tr nid ='{{ row.2.nid }}'>
-                        <td  style="width: 50px;text-align: center">{{ forloop.counter}}</td>
+                        <td  style="width: 50px;text-align: center">{{ forloop.counter | add:page_start}}</td>
                         <td >{{ row.0 }}</td>
                         <td>{{ row.1 }}</td>
                         <td>

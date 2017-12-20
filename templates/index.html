@@ -12,7 +12,7 @@
 {% if request.session.user_info.blog__theme  %}
     <body style="background-image: url(/static/imgs/back-image/{{ request.session.user_info.blog__theme }}.jpg) ">
 {% else %}
-    <body style="background-color: #efefef;background-image: url(/static/imgs/back-image/1.jpg);">
+    <body style="background-color: #efefef;background-image: url(/static/imgs/back-image/default.jpg);">
 {% endif %}
 
 <div class="pg-header pg-header-backcolor">
@@ -57,7 +57,7 @@
                 <div class="" style="font-size: 20px;font-weight: bold"><a style="color: black" href="/{{ row.blog.site }}/{{ row.nid }}.html">{{ row.title}}</a></div>
                 <div class="content-item">{{ row.summary }}</div>
                 <div class="content-item-1">
-                    <div class="float-left" style="width: 200px;">发布者：<a href="/{{ row.blog.site }}-0-0.html">{{ row.blog.user.nickname }}</a></div>
+                    <div class="float-left" style="width: 250px;padding-right: 0px;">发布者：<a href="/{{ row.blog.site }}-0-0.html">{{ row.blog.user.nickname }}</a></div>
                     <div class="float-left">{{ row.create_time | date:"Y-m-d H:i:s"}}</div>
                     <div id="article_id" style="display: none">{{ row.nid }}</div>
                     <div id='AddFavor' class="float-left" style="position: relative"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;&nbsp;<span>{{ row.up_count }}</span></div>
@@ -79,14 +79,14 @@
                 <div>
                     <div class="img_head">
                         {% if request.session.user_info.avatar %}
-                            <img id="previewImg" src="{{ request.session.user_info.avatar }}">
+                            <a href="/{{ request.session.user_info.blog__site }}-0-0.html"><img id="previewImg" src="{{ request.session.user_info.avatar }}"></a>
                         {% else %}
-                            <img id="previewImg" src="/static/imgs/avatar/default.png">
+                            <a href="/{{ request.session.user_info.blog__site }}-0-0.html"><img id="previewImg" src="/static/imgs/avatar/default.png"></a>
                         {% endif %}
                     </div>
                 <div class="float-left">
                     <div style="font-size: 12px;color: #999999;width: 130px">用户名:</div>
-                    <div style="font-size: 18px;padding-left: 10px">{{ request.session.user_info.username }}</div>
+                    <div style="font-size: 18px;padding-left: 10px"><a href="/{{ request.session.user_info.blog__site }}-0-0.html" style="color: black">{{ request.session.user_info.username }}</a></div>
                     <div style="font-size: 12px;color: #999999">昵称：</div>
                     <div style="font-size: 18px;padding-left: 10px;width: 130px">{{ request.session.user_info.nickname }}</div>
 
